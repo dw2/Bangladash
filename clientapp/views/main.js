@@ -26,6 +26,9 @@ module.exports = BaseView.extend({
         this.model.chats.on('add', this.handleNewChat, this);
         this.model.chats.on('reset', this.handleChatsReset, this);
 
+        this.model.damagingTasks.on('add reset', this.handleUpdateBossStats, this);
+        this.model.shippedTasks.on('add reset', this.handleUpdateBossStats, this);
+
         // because the data is handled seperately we can just tell this main
         // app view to render itself when the DOM is ready.
         // This is just a shortcut for doing $(document).ready();
@@ -48,6 +51,9 @@ module.exports = BaseView.extend({
             view = new ChatView({ model: chat }),
             r = view.render();
         if (r) chatContainer.append(r.el);
+    },
+    handleUpdateBossStats: function (chat) {
+        console.log(app.team.attributes.bossAttackPerc,app.team.attributes.bossDamagePerc, app.team.attributes.bossHealthPerc)
     },
     handleMembersReset: function () {
         // create and append a view for each member
