@@ -10,6 +10,7 @@ var Backbone = require('backbone'),
     Members = require('models/members'),
     ShippedTasks = require('models/shippedTasks'),
     DamagingTasks = require('models/damagingTasks');
+    Chats = require('models/chats');
 
 
 module.exports = Backbone.Model.extend({
@@ -19,18 +20,22 @@ module.exports = Backbone.Model.extend({
         // of a single team. We could just attached the collection
         // to the "app" object, but this is a bit more semantic
         this.members = new Members();
-        
+
         // If we reset the collection, or if presence of activeTaskTitle changes
         // we want to update our order property.
         this.members.on('change:presence change:activeTaskTitle reset add remove', this.updateOrder, this);
-        
+
         // create and store a collection of Shipped Tasks
         this.shippedTasks = new ShippedTasks();
         this.shippedTasks.on('add reset', this.updateShippedTotals, this);
-        
+
         // create and store a collection of Damaging Tasks
         this.damagingTasks = new DamagingTasks();
         this.damagingTasks.on('add reset', this.updateDamagingTotals, this);
+
+        // create and store a collection of Chats
+        this.chats = new Chats();
+        this.chats.on('add reset', this.updateChats, this);
 
         // set the current weekday as an attribute of the team
         // just for convenience
@@ -59,7 +64,7 @@ module.exports = Backbone.Model.extend({
     updateShippedTotals: function () {
         // countBy() is a handy underscore method for counting
         // how many of each item is in a givven group.
-        // The following code will return an object that looks 
+        // The following code will return an object that looks
         // something like this:
         // {
         //    '1': 4,
@@ -86,8 +91,11 @@ module.exports = Backbone.Model.extend({
             member.set('damagingCount', totals[member.id] || 0);
         });
     },
+    updateChats: function () {
+        //NEED GUTS?
+    },
     // This is just one possible way to determine whether or not
-    // it's the same day or not. But, by just setting the string 
+    // it's the same day or not. But, by just setting the string
     // representation of the weekday (i.e. 'wednesday') as a property
     // of the model we can then listen to "change:day" events and
     // know that we need to reset all of our counts, etc.

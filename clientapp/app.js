@@ -38,6 +38,7 @@ module.exports = {
             self.team.members.fetch();
             self.team.shippedTasks.fetch();
             self.team.damagingTasks.fetch();
+            self.team.chats.fetch();
         });
 
         return this;
@@ -47,7 +48,9 @@ module.exports = {
         var objectMap = {
             member: app.team.members,
             task: app.team.shippedTasks,
-            damagingTask: app.team.damagingTasks
+            damagingTask: app.team.damagingTasks,
+            chat: app.team.chats
+
         };
         return objectMap[type];
     },

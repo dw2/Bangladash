@@ -8,15 +8,19 @@ var BaseView = require('views/base'),
     _ = require('underscore'),
     templates = require('templates'),
     MemberView = require('views/member');
-    
-    
+
+
 module.exports = BaseView.extend({
     initialize: function () {
         // when members are reset we want to redraw them all
         this.model.members.on('add', this.handleNewMember, this);
         this.model.members.on('reset', this.handleMembersReset, this);
-        
-        // because the data is handled seperately we can just tell this main 
+
+        // when members are reset we want to redraw them all
+        this.model.chats.on('add', this.handleNewChat, this);
+        this.model.chats.on('reset', this.handleChatsReset, this);
+
+        // because the data is handled seperately we can just tell this main
         // app view to render itself when the DOM is ready.
         // This is just a shortcut for doing $(document).ready();
         $(_.bind(this.render, this));
@@ -27,6 +31,15 @@ module.exports = BaseView.extend({
         // render our app template into the body
         this.$el.html(templates.app());
     },
+    handleChatsReset: function () {
+        // create and append a view for each member
+        //this.model.members.each(this.handleNewMember, this);
+    },
+    handleNewChat: function (member) {
+        //var peopleContainer = this.$('.people'),
+        //    view = new MemberView({model: member});
+        //peopleContainer.append(view.render().el);
+    },
     handleMembersReset: function () {
         // create and append a view for each member
         this.model.members.each(this.handleNewMember, this);
@@ -34,7 +47,7 @@ module.exports = BaseView.extend({
     handleNewMember: function (member) {
         var peopleContainer = this.$('.people'),
             view = new MemberView({model: member});
-        
+
         peopleContainer.append(view.render().el);
     }
 });
