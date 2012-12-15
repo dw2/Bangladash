@@ -72,7 +72,6 @@ module.exports = {
             task: app.team.shippedTasks,
             damagingTask: app.team.damagingTasks,
             chat: app.team.chats
-
         };
         return objectMap[type];
     },

@@ -14,6 +14,10 @@ var Backbone = require('backbone'),
 
 
 module.exports = Backbone.Model.extend({
+    defaults: {
+        bossHealthPerc: 0,
+        bossAttackPerc: 0
+    },
     initialize: function () {
         // init our members collection and attach it to the
         // team object. This doesn't really matter in the case
@@ -46,6 +50,11 @@ module.exports = Backbone.Model.extend({
 
         // handle the case when the day is different
         this.on('change:day', this.handleChangedDay, this);
+
+        // Create the boss
+        this.damagingTasks.on('add reset', this.updateBossStats, this);
+        this.shippedTasks.on('add reset', this.updateBossStats, this);
+        this.updateBossStats(this);
     },
     // Here we create a scoring mechanism for which member shows up
     // at the top of the list.
@@ -112,5 +121,11 @@ module.exports = Backbone.Model.extend({
     // we want to clear it out. So we reset the shipped collection.
     handleChangedDay: function () {
         this.shippedTasks.reset();
+    },
+    updateBossStats: function () {
+        var power = this.damagingTasks.length,
+            health = Math.abs(this.damagingTasks.length - this.shippedTasks.length);
+        this.set('bossHealthPerc', health);
+        this.set('bossAttackPerc', power);
     }
 });
