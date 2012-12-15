@@ -255,6 +255,7 @@ menu {
     margin: 0 20px;
     padding: 60px 60px 40px;
     position: relative;
+    width: 180px;
     z-index: 2; }
     #people .member:before {
       background: url(/img/keystone.png) 0 0 no-repeat;

@@ -36,6 +36,7 @@ var app = express();
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.cookieParser());
+app.use(express.bodyParser());
 app.use(express.session({ secret: config.session.secret }));
 app.use(andbangAuth.middleware({
     app: app,
@@ -62,6 +63,16 @@ app.get('/', andbangAuth.secure(), function (req, res) {
     res.cookie('apiToken', req.session.accessToken, {expires: new Date(Date.now() + 30000)});
     res.sendfile(__dirname + '/app.html');
 });
+
+// Couch and relevant routes
+var cradle = require('cradle');
+cradle.setup(config.cradle.setup);
+var
+    dbc = new(cradle.Connection),
+    db = dbc.database(config.cradle.name),
+    couch = require('./controllers/couch')(db);
+
+app.put('/characters/:memberId', andbangAuth.secure(), couch.updateCharacter);
 
 // start listening for requests
 app.listen(config.port);

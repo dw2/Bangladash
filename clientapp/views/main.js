@@ -100,12 +100,15 @@ module.exports = BaseView.extend({
                     };
                     $.ajax({
                         type: "PUT",
-                        url: 'http://localhost:5984/bangladash/member-'+me.id,
-                        contentType: "application/json",
-                        dataType: "application/json",
+                        url: 'http://localhost:3003/characters/' + me.id,
                         data: character,
+                        dataType: 'json',
+                        error: function (xhr, status, error) {
+                            $.alert('Unable to save character sheet.');
+                        },
                         success: function (data, status, xhr) {
-                            console.log("DATA",data);
+                            app.team.members._byId[me.id].set('character', character);
+                            app.team.members._byId[me.id].character = character;
                         }
                     });
                 }
