@@ -51,23 +51,17 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
         var __indent = [];
         buf.push('\n<div class="well member">\n  <div class="userImage"><img');
         buf.push(attrs({
-            src: locals.member.picUrl() + "?s=50"
+            src: locals.member.picUrl() + "?s=180"
         }, {
             src: true
         }));
-        buf.push("/></div>\n  <h2>");
+        buf.push('/></div>\n  <h2>Monsterparts</h2>\n  <div class="stats">29 - Wizard</div>\n  <div class="name">');
         var __val__ = locals.member.fullName();
         buf.push(escape(null == __val__ ? "" : __val__));
-        buf.push('</h2>\n  <p class="activeTask">');
+        buf.push('</div>\n  <div class="activeTask">');
         var __val__ = locals.activeTaskTitle || "";
         buf.push(escape(null == __val__ ? "" : __val__));
-        buf.push('</p>\n  <p class="healthPerc">');
-        var __val__ = locals.healthPerc || 0;
-        buf.push(escape(null == __val__ ? "" : __val__));
-        buf.push('</p>\n  <p class="attackPerc">');
-        var __val__ = locals.attackPerc || 0;
-        buf.push(escape(null == __val__ ? "" : __val__));
-        buf.push("</p>\n</div>");
+        buf.push('</div>\n  <div class="healthPerc">\n    <div class="label">' + escape((interp = locals.healthPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n  <div class="attackPerc wizard">\n    <div class="label">' + escape((interp = locals.attackPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n</div>');
     }
     return buf.join("");
 };
