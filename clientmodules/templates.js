@@ -52,7 +52,13 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
         }, {
             src: true
         }));
-        buf.push("/></div>\n  <h2>" + escape((interp = locals.member.character.name) == null ? "" : interp) + '</h2>\n  <div class="stats">' + escape((interp = locals.member.character.level) == null ? "" : interp) + " - " + escape((interp = locals.member.character.spec) == null ? "" : interp) + '</div>\n  <div class="name">');
+        buf.push("/></div>\n  <h2>" + escape((interp = locals.member.character.name) == null ? "" : interp) + '</h2>\n  <div class="stats">');
+        if (!!locals.member.character.level && !!locals.member.character.spec) {
+            buf.push("\n    <" + locals.member.character.level + ">- " + escape((interp = locals.member.character.spec) == null ? "" : interp) + "</" + locals.member.character.level + ">");
+        } else {
+            buf.push("?");
+        }
+        buf.push('\n  </div>\n  <div class="name">');
         var __val__ = locals.member.fullName();
         buf.push(escape(null == __val__ ? "" : __val__));
         buf.push('</div>\n  <div class="activeTask">');

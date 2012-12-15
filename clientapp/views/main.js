@@ -121,17 +121,23 @@ module.exports = BaseView.extend({
             activeTask = task;
         });
         app.api.getMyTasks(app.team.id, function(err, tasks) {
-            var html = "<h1>PEW</h1><select>";
-        _.each(tasks, function(task) {
-            html += '<option value="' + task.id + '"'+ ( activeTask != null && task.id == activeTask.id ? ' selected="selected"' : '') + '>' + task.title + '</option>';
-        });
-        html += '</select>';
+            var html = "<select>";
+            _.each(tasks, function(task) {
+                html += '<option value="' + task.id + '"' + (activeTask != null && task.id == activeTask.id ? ' selected="selected"' : '') + '>' + task.title + '</option>';
+            });
+            html += '</select><p>Attacking will ship your task. Preparing will set your active task.</p>';
             var modal = new Skylite({
-                title: 'Attacks',
+                title: 'Select an Attack',
                 body: html,
-                type: 'settings',
+                type: 'attack',
                 actions: {
-                    cancel: function() {}
+                    exit: function() {},
+                    "Prepare Attack": function() {
+                        //pew pew set active
+                    },
+                    "Attack!": function() {
+                        //pew pew ship
+                    }
                 }
             });
         });

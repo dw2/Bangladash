@@ -10,7 +10,7 @@ module.exports = Backbone.Model.extend({
     defaults: {
         shippedCount: 0,
         damagingCount: 0,
-        character: {name:"?", spec: "?", level: "?"}
+        character: {name:"Unkown", spec: "?", level: "?"}
     },
     // backbone calls "initialize" after calling a model's constructor
     initialize: function () {

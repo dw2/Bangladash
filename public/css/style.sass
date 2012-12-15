@@ -119,7 +119,7 @@ menu
 
 #boss
   left: 50%
-  margin: 0 0 0 -160px
+  margin: 0 0 0 -150px
   position: absolute
 
 #boss .boss,
@@ -288,15 +288,14 @@ body > .modal
   top: 50%
   width: 340px
   z-index: 100
-  &.settings
-    margin-top: -210px
   h1
     color: #000
     font: 30px DiavloLight, sans-serif
     padding: 0 0 20px
   p
+    clear: both
     font-size: 16px
-    padding: 0 0 20px
+    padding: 10px 0
   .actions
     bottom: 30px
     position: absolute
@@ -337,3 +336,33 @@ body > .modal
   input[type="text"]
     display: block
     width: 100%
+  &.settings
+    margin-top: -210px
+  &.attack
+    margin-top: -160px
+    .actions .exit
+      +bg_gradient(#ccc,#aaa)
+      +border_radius(15)
+      +box_shadow(0 0 5px #fff)
+      color: #888
+      height: 30px
+      margin: 0
+      padding: 0
+      position: absolute
+      right: -20px
+      text-indent: -500em
+      top: -242px
+      width: 30px
+      &:before
+        content: '\00D7'
+        font-size: 25px
+        height: 30px
+        left: 0
+        line-height: 30px
+        position: absolute
+        text-align: center
+        text-indent: 0
+        top: 0
+        width: 30px
+      &:hover
+        color: #333

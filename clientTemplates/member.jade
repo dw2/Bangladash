@@ -2,7 +2,11 @@ li.member
   .userImage
     img(src= locals.member.picUrl() + '?s=180')
   h2 #{locals.member.character.name}
-  .stats #{locals.member.character.level} - #{locals.member.character.spec}
+  .stats
+    if !!locals.member.character.level && !!locals.member.character.spec
+      #{locals.member.character.level} - #{locals.member.character.spec}
+    else
+      | ?
   .name= locals.member.fullName()
   .activeTask= (locals.activeTaskTitle || '')
   .healthPerc

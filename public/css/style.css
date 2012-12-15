@@ -250,7 +250,7 @@ menu {
 
 #boss {
   left: 50%;
-  margin: 0 0 0 -160px;
+  margin: 0 0 0 -150px;
   position: absolute; }
 
 #boss .boss,
@@ -456,15 +456,14 @@ body > .modal {
   top: 50%;
   width: 340px;
   z-index: 100; }
-  body > .modal.settings {
-    margin-top: -210px; }
   body > .modal h1 {
     color: black;
     font: 30px DiavloLight, sans-serif;
     padding: 0 0 20px; }
   body > .modal p {
+    clear: both;
     font-size: 16px;
-    padding: 0 0 20px; }
+    padding: 10px 0; }
   body > .modal .actions {
     bottom: 30px;
     position: absolute;
@@ -521,3 +520,40 @@ body > .modal {
   body > .modal input[type="text"] {
     display: block;
     width: 100%; }
+  body > .modal.settings {
+    margin-top: -210px; }
+  body > .modal.attack {
+    margin-top: -160px; }
+    body > .modal.attack .actions .exit {
+      background: -moz-linear-gradient(top, #cccccc, #aaaaaa) ;
+      background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#aaaaaa)) ;
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#cccccc, endColorstr=#aaaaaa)";
+      -moz-border-radius: 15px;
+      -o-border-radius: 15px;
+      -webkit-border-radius: 15px;
+      border-radius: 15px;
+      -moz-box-shadow: 0 0 5px white;
+      -webkit-box-shadow: 0 0 5px white;
+      box-shadow: 0 0 5px white;
+      color: #888888;
+      height: 30px;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: -20px;
+      text-indent: -500em;
+      top: -242px;
+      width: 30px; }
+      body > .modal.attack .actions .exit:before {
+        content: "\00D7";
+        font-size: 25px;
+        height: 30px;
+        left: 0;
+        line-height: 30px;
+        position: absolute;
+        text-align: center;
+        text-indent: 0;
+        top: 0;
+        width: 30px; }
+      body > .modal.attack .actions .exit:hover {
+        color: #333333; }
