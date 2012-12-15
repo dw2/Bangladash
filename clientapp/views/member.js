@@ -87,6 +87,7 @@ module.exports = BaseView.extend({
         var container = $('#boss'),
             power = app.team.attributes.bossAttackPerc,
             damage = app.team.attributes.bossDamagePerc;
+        if (power > 100) power = 100;
         if (damage > 100) damage = 100;
         var health = 100 - damage;
         var healthPixels = Math.round(damage / 100 * 157) + 14,
