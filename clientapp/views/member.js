@@ -55,19 +55,20 @@ module.exports = BaseView.extend({
         this.$el[this.model.get('activeTask') ? 'addClass' : 'removeClass']('active');
     },
     handleShippedCountChange: function () {
-        var p = this.model.get('shippedCount') * 10,
+        var power = this.model.get('shippedCount') * 10,
             container = this.$('.attackPerc');
-        if (p > 100) p = 100;
-        var pixels = Math.round((100 - p) / 100 * 157) + 14;
-        container.find('.label').empty().text(p + '%').css('top', pixels);
+        if (power > 100) power = 100;
+        var pixels = Math.round((100 - power) / 100 * 157) + 14;
+        container.find('.label').empty().text(power + '%').css('top', pixels);
         container.find('.mask').css('height', pixels);
     },
     handleDamagingCountChange: function () {
-        var p = this.model.get('damagingCount') * 10,
-            container = this.$('.healthPerc');
-        if (p > 100) p = 100;
-        var  pixels = Math.round((100 - p) / 100 * 157) + 14;
-        container.find('.label').empty().text(p + '%').css('top', pixels);
+        var container = this.$('.healthPerc'),
+            damage = this.model.get('damagingCount') * 10;
+        if (damage > 100) damage = 100;
+        var health = 100 - damage;
+        var pixels = Math.round(damage / 100 * 157) + 14;
+        container.find('.label').empty().text(health + '%').css('top', pixels);
         container.find('.mask').css('height', pixels);
     },
     handleCharacterChange: function () {
