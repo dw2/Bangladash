@@ -60,7 +60,7 @@ module.exports = BaseView.extend({
             $task.addClass('new');
             setTimeout(function() {
                 if ($task.hasClass('new')) $task.removeClass('new');
-            }, 3000);
+            }, 6000);
         }
     },
     handleShippedCountChange: function () {
