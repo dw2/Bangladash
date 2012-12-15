@@ -62,7 +62,7 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
         var __val__ = locals.member.fullName();
         buf.push(escape(null == __val__ ? "" : __val__));
         buf.push('</div>\n  <div class="activeTask">');
-        var __val__ = locals.activeTaskTitle || "";
+        var __val__ = locals.activeTaskTitle || "No active task.";
         buf.push(escape(null == __val__ ? "" : __val__));
         buf.push('</div>\n  <div class="healthPerc">\n    <div class="label">' + escape((interp = locals.healthPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n  <div');
         buf.push(attrs({

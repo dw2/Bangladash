@@ -31,6 +31,7 @@ module.exports = BaseView.extend({
     render: function () {
         // Here we replace the default 'el'.
         this.setElement(templates.member({member: this.model}));
+        setTimeout(function(){ $(window).trigger('resize'); }, 100);
         // This is what makes the declaritive bindings above
         // actually work. We're just calling a method on the
         // base view that set up the various handlers necessary

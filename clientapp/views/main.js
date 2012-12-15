@@ -15,7 +15,8 @@ module.exports = BaseView.extend({
     events: {
         "keypress #chat textarea": "submitNewMessage",
         "click menu .settings": "displaySettingsModal",
-        "click menu .attacks": "displayAttacksModal"
+        "click menu .attacks": "displayAttacksModal",
+        "click #people .userImage": "displayAssignTaskModal"
     },
     initialize: function () {
         // when members are reset we want to redraw them all
@@ -142,6 +143,19 @@ module.exports = BaseView.extend({
                     }
                 }
             });
+        });
+    },
+    displayAssignTaskModal: function () {
+        var modal = new Skylite({
+            title: 'Assign Task',
+            body: 'Careful, assigning too many tasks will make your menacing project even bigger.',
+            type: 'assigntask',
+            actions: {
+                cancel: function() {},
+                Assign: function() {
+                    //console.log assign task!
+                }
+            }
         });
     }
 });
