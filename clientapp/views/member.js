@@ -84,7 +84,6 @@ module.exports = BaseView.extend({
         this.remove();
     },
     renderBoss: function () {
-        console.log(app.team.attributes);
         var container = $('#boss'),
             power = app.team.attributes.bossAttackPerc,
             damage = app.team.attributes.bossDamagePerc;

@@ -109,6 +109,7 @@ module.exports = {
 
                     if (eventtype === 'shipTask' && item.object === 'task') {
                         app.team.shippedTasks.add(item.data);
+                        app.team.damagingTasks.remove(item.data);
                     }
 
                 // if it's a "create" we'll get an object type we can use that

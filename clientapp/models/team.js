@@ -127,6 +127,6 @@ module.exports = Backbone.Model.extend({
         var damage = this.shippedTasks.length,
             power = this.damagingTasks.length;
         this.set('bossDamagePerc', damage);
-        this.set('bossAttackPerc', power);
+        this.set('bossAttackPerc', power + damage);
     }
 });

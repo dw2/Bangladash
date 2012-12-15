@@ -116,6 +116,24 @@ module.exports = BaseView.extend({
         });
     },
     displayAttacksModal: function () {
-        console.log('something');
+        var activeTask = null;
+        app.api.getMyActiveTask(app.team.id, function(err, task) {
+            activeTask = task;
+        });
+        app.api.getMyTasks(app.team.id, function(err, tasks) {
+            var html = "<h1>PEW</h1><select>";
+        _.each(tasks, function(task) {
+            html += '<option value="' + task.id + '"'+ ( activeTask != null && task.id == activeTask.id ? ' selected="selected"' : '') + '>' + task.title + '</option>';
+        });
+        html += '</select>';
+            var modal = new Skylite({
+                title: 'Attacks',
+                body: html,
+                type: 'settings',
+                actions: {
+                    cancel: function() {}
+                }
+            });
+        });
     }
 });
