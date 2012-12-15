@@ -3,8 +3,11 @@
 @import fonts
 
 body
-  +bg_gradient(#444,#111)
+  background: #222
   font: 16px DinRegularAlternate, sans-serif
+
+h1, h2, h3
+  font-family: DiavloLight, sans-serif
 
 #people
   background: url(/img/carbon_fibre.png) top center repeat #282828
@@ -12,6 +15,7 @@ body
   left: 0
   position: fixed
   right: 0
+  text-align: center
   &:before
     background: url(/img/carbon_fibre_edge.png) top center repeat-x
     content: ''
@@ -20,3 +24,115 @@ body
     position: absolute
     right: 0
     top: -38px
+    z-index: 1
+  .member
+    background: url(/img/ring.png) 50% 42px no-repeat
+    color: #777
+    display: inline-block
+    margin: 0 20px
+    padding: 60px
+    position: relative
+    z-index: 2
+    &:before
+      background: url(/img/keystone.png) 0 0 no-repeat
+      content: ''
+      height: 46px
+      left: 50%
+      margin: 0 0 0 -60px
+      position: absolute
+      top: 22px
+      width: 120px
+      z-index: 3
+    .userImage
+      background: #000
+      +border_radius(90)
+      +box_shadow(0 0 60px #000)
+      height: 180px
+      width: 180px
+      img
+        +border_radius(90)
+        display: block
+        height: 180px
+        width: 180px
+    h2
+      color: #ccc
+      font-size: 30px
+      height: 45px
+      line-height: 30px
+      padding: 10px 0
+      &:after
+        display: block
+        font-size: 15px
+        height: 15px
+        line-height: 15px
+        color: #444
+        content: '\2022\00A0\2022\00A0\2022'
+    .stats
+      font-size: 20px
+      line-height: 20px
+    .name
+      font-size: 15px
+      line-height: 15px
+    .activeTask
+      display: none
+    .healthPerc
+      background: url(/img/health-bar.png) 0 0 no-repeat
+      color: #d63c31
+      height: 280px
+      left: 2px
+      position: absolute
+      top: 11px
+      width: 150px
+      .mask
+        background: url(/img/ring.png) 0 0 no-repeat
+        display: block
+        height: 160px
+        left: 47px
+        position: absolute
+        top: 32px
+        width: 101px
+      .label
+        font-size: 20px
+        height: 20px
+        line-height: 20px
+        margin: 22px 0 0
+        position: absolute
+        right: 110px
+        &:after
+          content: '%'
+    .attackPerc
+      background: 0 0 no-repeat
+      height: 280px
+      position: absolute
+      right: 2px
+      top: 11px
+      width: 150px
+      &.wizard
+        background-image: url(/img/attack-bar-wizard.png)
+        color: #875ead
+      &.fighter
+        background-image: url(/img/attack-bar-fighter.png)
+        color: #a29422
+      &.ranger
+        background-image: url(/img/attack-bar-ranger.png)
+        color: #3a9029
+      &.cleric
+        background-image: url(/img/attack-bar-cleric.png)
+        color: #1583c2
+      .mask
+        background: url(/img/ring.png) 100% 0 no-repeat
+        display: block
+        height: 160px
+        position: absolute
+        right: 47px
+        top: 32px
+        width: 101px
+      .label
+        font-size: 20px
+        height: 20px
+        left: 110px
+        line-height: 20px
+        margin: 22px 0 0
+        position: absolute
+        &:after
+          content: '%'

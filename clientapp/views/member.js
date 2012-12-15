@@ -54,13 +54,17 @@ module.exports = BaseView.extend({
     },
     handleShippedCountChange: function () {
         var i = this.model.get('shippedCount'),
-            container = this.$('.attackPerc');
-        container.empty().text(i);
+            container = this.$('.attackPerc'),
+            pixels = Math.round((100 - i) / 100 * 157) + 14;
+        container.find('.label').empty().text(i).css('top', pixels);
+        container.find('.mask').css('height', pixels);
     },
     handleDamagingCountChange: function () {
         var i = this.model.get('damagingCount'),
-            container = this.$('.healthPerc');
-        container.empty().text(i);
+            container = this.$('.healthPerc'),
+            pixels = Math.round((100 - i) / 100 * 157) + 14;
+        container.find('.label').empty().text(i).css('top', pixels);
+        container.find('.mask').css('height', pixels);
     },
     destroy: function () {
         this.model.off();
