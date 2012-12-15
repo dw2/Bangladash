@@ -133,10 +133,12 @@ module.exports = BaseView.extend({
                 actions: {
                     exit: function() {},
                     "Prepare Attack": function() {
-                        //pew pew set active
+                        app.api.startTask(app.team.id, modal.$modal.find("select").val(),  function(err, task) {
+                        });
                     },
                     "Attack!": function() {
-                        //pew pew ship
+                        app.api.shipTask(app.team.id, modal.$modal.find("select").val(),  function(err, task) {
+                        });
                     }
                 }
             });
