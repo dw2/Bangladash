@@ -3,5 +3,17 @@
     "clientId": "ab66be151080d6657243209920b663d4aceaa69d",
     "clientSecret": "JEX-6pJS8l8jNZughYoFLg07bJodTcvcSfYvCzixTZz"
   },
-  "port": 3003
+  "cradle": {
+    "name": "bangladash",
+    "setup": {
+      "host": "lvh.me",
+      "port": 5984,
+      "cache": true,
+      "raw": false
+    }
+  },
+  "port": 3003,
+  "session": {
+    "secret": "its over 9000"
+  }
 }

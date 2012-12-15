@@ -18,7 +18,8 @@
     "templatizer": "",
     "andlog": "",
     "getconfig": "",
-    "andbang": ""
+    "andbang": "",
+    "cradle": ""
   },
   "clientmodules": [
     "andlog",

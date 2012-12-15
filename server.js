@@ -16,9 +16,9 @@ var express = require('express'),
 // build our client templates into vanilla javascript
 templatizer(__dirname + '/clientTemplates', __dirname + '/clientmodules/templates.js');
 
-// Then we define the files that will make up our clientside application. 
-// We use Stitch (https://github.com/sstephenson/stitch) to allow us to 
-// organize our browser.js using the same CommonJS module pattern we use 
+// Then we define the files that will make up our clientside application.
+// We use Stitch (https://github.com/sstephenson/stitch) to allow us to
+// organize our browser.js using the same CommonJS module pattern we use
 // on the server.
 var clientSideJS = stitch.createPackage({
         paths: [__dirname + '/clientmodules', __dirname + '/clientapp'],
@@ -36,7 +36,7 @@ var app = express();
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.cookieParser());
-app.use(express.session({ secret: 'CHANGE THIS - YES, THAT MEANS YOU' }));
+app.use(express.session({ secret: config.session.secret }));
 app.use(andbangAuth.middleware({
     app: app,
     clientId: config.auth.clientId,
@@ -51,7 +51,7 @@ app.use(andbangAuth.middleware({
 // in development it can also watch for changes and update itself so we don't have
 // to re-start the server each time we change any of our client files.
 
-// We wouldn't want to serve our application this way in production. For that, we can 
+// We wouldn't want to serve our application this way in production. For that, we can
 // write the file to disk, minify it and just serve it as a static javascript file.
 app.get('/&!-dashboard.js', clientSideJS.createServer());
 
