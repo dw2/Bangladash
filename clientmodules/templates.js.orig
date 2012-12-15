@@ -16,25 +16,11 @@ exports.app = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<aside id="chat">\n  <div class="chat"></div>\n</aside>\n<aside id="tasks"></aside>\n<section id="people">\n  <div class="people"></div>\n</section>');
-    }
-    return buf.join("");
-};
-
-// chat.jade compiled template
-exports.chat = function anonymous(locals, attrs, escape, rethrow, merge) {
-    attrs = attrs || jade.attrs;
-    escape = escape || jade.escape;
-    rethrow = rethrow || jade.rethrow;
-    merge = merge || jade.merge;
-    var buf = [];
-    with (locals || {}) {
-        var interp;
-        var __indent = [];
-        buf.push('\n<div class="well chat">\n  <p class="message">');
-        var __val__ = locals.chat.attributes.message;
-        buf.push(escape(null == __val__ ? "" : __val__));
-        buf.push("</p>\n</div>");
+<<<<<<< Updated upstream
+        buf.push('\n<aside id="chat"></aside>\n<aside id="tasks"></aside>\n<section id="people">\n  <div class="people"></div>\n</section>');
+=======
+        buf.push('\n<aside id="chat"></aside>\n<aside id="tasks"></aside>\n<section id="people"></section>');
+>>>>>>> Stashed changes
     }
     return buf.join("");
 };

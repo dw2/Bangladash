@@ -8,6 +8,7 @@ var BaseView = require('views/base'),
     _ = require('underscore'),
     templates = require('templates'),
     MemberView = require('views/member');
+    ChatView = require('views/chat');
 
 
 module.exports = BaseView.extend({
@@ -35,10 +36,10 @@ module.exports = BaseView.extend({
         // create and append a view for each member
         //this.model.members.each(this.handleNewMember, this);
     },
-    handleNewChat: function (member) {
-        //var peopleContainer = this.$('.people'),
-        //    view = new MemberView({model: member});
-        //peopleContainer.append(view.render().el);
+    handleNewChat: function (chat) {
+        var chatContainer = this.$('.chat');
+        view = new ChatView({model: chat});
+        chatContainer.append(view.render().el);
     },
     handleMembersReset: function () {
         // create and append a view for each member

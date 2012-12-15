@@ -107,6 +107,11 @@ module.exports = {
                         if (collection) {
                             collection.add(item.data);
                         }
+                    }else if (item.object === 'chat') {
+                        collection = app.findCollection(item.object);
+                        if (collection) {
+                            collection.add(item.data);
+                        }
                     }
 
                 // if it's a "delete" we need to find it and remove it.
