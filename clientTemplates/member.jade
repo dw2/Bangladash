@@ -1,7 +1,7 @@
 .well.member
   .userImage
     img(src= locals.member.picUrl() + '?s=50')
-  h4= locals.member.fullName()
+  h2= locals.member.fullName()
   p.activeTask= (locals.activeTaskTitle || '')
   p.healthPerc= (locals.healthPerc || 0)
-  .shippedCount
+  p.attackPerc= (locals.attackPerc || 0)
