@@ -55,9 +55,11 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
         buf.push("\n<li");
         buf.push(attrs({
             "data-id": locals.member.id,
+            "data-name": locals.member.fullName(),
             "class": "member"
         }, {
-            "data-id": true
+            "data-id": true,
+            "data-name": true
         }));
         buf.push('>\n  <div class="userImage"><img');
         buf.push(attrs({

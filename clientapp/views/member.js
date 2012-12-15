@@ -56,7 +56,11 @@ module.exports = BaseView.extend({
         this.$el[this.model.get('activeTask') ? 'addClass' : 'removeClass']('active');
         $member = $('#people .member[data-id="' + this.model.id + '"]');
         if ($member.length) {
-            $member.find('.activeTask').addClass('new').delay(2000).removeClass('new');
+            $task = $member.find('.activeTask');
+            $task.addClass('new');
+            setTimeout(function() {
+                if ($task.hasClass('new')) $task.removeClass('new');
+            }, 3000);
         }
     },
     handleShippedCountChange: function () {
