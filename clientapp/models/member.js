@@ -9,7 +9,8 @@ var Backbone = require('backbone'),
 module.exports = Backbone.Model.extend({
     defaults: {
         shippedCount: 0,
-        damagingCount: 0
+        damagingCount: 0,
+        character: {name:"", spec: "", level: 1}
     },
     // backbone calls "initialize" after calling a model's constructor
     initialize: function () {
@@ -22,6 +23,9 @@ module.exports = Backbone.Model.extend({
 
         this.on('create:task', this.handleDamagingTaskChange, this);
         this.handleDamagingTaskChange();
+
+        this.on('update:member', this.handleMemberUpdate, this);
+        this.handleMemberUpdate();
     },
     // This simply looks up the active task attribute,
     // if it has one, goes and fetchs the task from the
@@ -48,5 +52,24 @@ module.exports = Backbone.Model.extend({
     },
     handleDamagingTaskChange: function () {
         this.damagingCount = app.team.damagingTasks.length;
+    },
+    handleMemberUpdate: function() {
+        this.character = {name:"Derp", spec: "Wizard", level: 9000};
+        var self = this;
+        $.ajax({
+            url: 'http://localhost:5984/bandladash/'+'member-'+self.id,
+            type: "GET",
+            dataType: "json",
+            error: function(xhr,status, error) {
+                console.log(error);
+                self.character = {name:"?", spec: "?", level: 1};
+            },
+            success: function(data,status,xhr) {
+                console.log(data);
+                self.character.name = data.name;
+                self.character.spec = data.spec;
+                self.character.level = data.level;
+            }
+        });
     }
 });

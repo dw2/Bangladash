@@ -1,13 +1,13 @@
 .well.member
   .userImage
     img(src= locals.member.picUrl() + '?s=180')
-  h2 Monsterparts
-  .stats 29 - Wizard
+  h2 #{locals.member.character.name}
+  .stats #{locals.member.character.level} - #{locals.member.character.spec}
   .name= locals.member.fullName()
   .activeTask= (locals.activeTaskTitle || '')
   .healthPerc
     .label #{locals.healthPerc || 0}%
     .mask
-  .attackPerc.wizard
+  .attackPerc(class=locals.member.character.spec.toLowerCase())
     .label #{locals.attackPerc || 0}%
     .mask
