@@ -93,7 +93,21 @@ module.exports = BaseView.extend({
             actions: {
                 cancel: function() {},
                 save: function() {
-                    console.log('herp');
+                    var character = {
+                        name: modal.$modal.find("#character_name").val(),
+                        spec: modal.$modal.find("#character_spec").val(),
+                        level: modal.$modal.find("#character_level").val()
+                    };
+                    $.ajax({
+                        type: "PUT",
+                        url: 'http://localhost:5984/bangladash/member-'+me.id,
+                        contentType: "application/json",
+                        dataType: "application/json",
+                        data: character,
+                        success: function (data, status, xhr) {
+                            console.log("DATA",data);
+                        }
+                    });
                 }
             }
         });
