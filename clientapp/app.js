@@ -12,7 +12,7 @@ module.exports = {
     // this is the the whole app initter
     blastoff: function (spec) {
         var self = this;
-        
+
         // our API connection
         this.api = new API();
         this.team = new TeamModel();
@@ -20,12 +20,12 @@ module.exports = {
         // init our main application view, it draws itself
         // when the DOM is ready
         this.view = new MainView({model: this.team});
-        
+
         // set up all our api event handlers
         this.api.on('*', _.bind(this.handleApiEvent, this));
 
         // Read in the api token from the cookie we
-        // just set on the server side and use it to 
+        // just set on the server side and use it to
         // log into our socket.io connection that connects
         // directly to the andbang API.
         this.token = cookies('apiToken');
@@ -55,7 +55,7 @@ module.exports = {
     findModel: function (type, id) {
         var coll = this.findCollection(type);
 
-        // will return 'undefined' if either the collection or 
+        // will return 'undefined' if either the collection or
         // model is not found.
         return coll && coll.get(id);
     },
@@ -73,7 +73,7 @@ module.exports = {
                 var type = item.type,
                     model,
                     collection;
-            
+
                 // if it's an update, we try to locate the model and then
                 // set the new properties on it.
                 if (type === 'update') {
@@ -86,17 +86,24 @@ module.exports = {
                     if (eventtype === 'shipTask' && item.object === 'task') {
                         app.team.shippedTasks.add(item.data);
                     }
-                
+
                 // if it's a "create" we'll get an object type we can use that
                 // to figure out which collection we need to add it to.
-                // Since we're ignoring all but the shipped tasks, in this case 
+                // Since we're ignoring all but the shipped tasks, in this case
                 // the only "create" operations we care about are new members who
                 // get added to the team while the app is open.
-                } else if (type === 'create' && item.object === 'member') {
-                    logger.log('got a create');
-                    collection = app.findCollection(item.object);
-                    if (collection) {
-                        collection.add(item.data);
+                } else if (type === 'create') {
+                    if(item.object === 'member') {
+                        logger.log('got a create');
+                        collection = app.findCollection(item.object);
+                        if (collection) {
+                            collection.add(item.data);
+                        }
+                    }else if(item.object === 'task') {
+                        collection = app.findCollection('damagingTask');
+                        if (collection) {
+                            collection.add(item.data);
+                        }
                     }
 
                 // if it's a "delete" we need to find it and remove it.
