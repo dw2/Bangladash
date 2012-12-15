@@ -28,6 +28,18 @@ var MainView = require('views/main'),
         }
         return new window.Skylite(options);
     }
+    $(window).resize(function() {
+        var memberW = 345,
+            $members = $('#people .member'),
+            zoom = $members.css('zoom') || 1,
+            availW = $('#people').width()
+            newZoom = Math.floor(availW / $members.length / memberW * 10) / 10;
+        if (newZoom > 1) newZoom = 1;
+        var newHeight = Math.ceil(385 * newZoom);
+        $('#people .member').css('zoom', newZoom);
+        $('#people').css('height', newHeight);
+        $('#chat').css('bottom', newHeight + 10);
+    });
 })(jQuery);
 
 module.exports = {

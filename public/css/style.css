@@ -250,7 +250,7 @@ menu {
 
 #boss {
   left: 50%;
-  margin: 0 0 0 -170px;
+  margin: 0 0 0 -160px;
   position: absolute; }
 
 #boss .boss,
@@ -259,7 +259,6 @@ menu {
   color: #777777;
   display: inline-block;
   list-style: none;
-  margin: 0 20px;
   padding: 60px 60px 40px;
   position: relative;
   width: 180px;
@@ -426,6 +425,9 @@ menu {
       #boss .boss .attackPerc.cleric .label:before,
       #people .member .attackPerc.cleric .label:before {
         border-color: #1583c2; }
+
+#people .member {
+  margin: 0 20px; }
 
 #mask {
   background: rgba(80, 80, 80, 0.9);
