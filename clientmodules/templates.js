@@ -31,7 +31,13 @@ exports.boss = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<div class="boss">\n  <div class="userImage"><img src="/img/boss-vegeta.jpg"/></div>\n  <h2>Super Sayan</h2>\n  <div class="stats">36 - Fighter</div>\n  <div class="name">Menacing Projects</div>\n  <div class="healthPerc">\n    <div class="label">' + escape((interp = locals.healthPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n  <div class="attackPerc fighter">\n    <div class="label">' + escape((interp = locals.attackPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n</div>');
+        buf.push('\n<div class="boss">\n  <div class="userImage"><img');
+        buf.push(attrs({
+            src: "http://robohash.org/" + locals.teamname + ".png?bgset=bg2&set=set2&size=180x180"
+        }, {
+            src: true
+        }));
+        buf.push("/></div>\n  <h2>" + escape((interp = locals.teamname) == null ? "" : interp) + '</h2>\n  <div class="stats">36 - Fighter</div>\n  <div class="name">Menacing Projects</div>\n  <div class="healthPerc">\n    <div class="label">' + escape((interp = locals.healthPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n  <div class="attackPerc fighter">\n    <div class="label">' + escape((interp = locals.attackPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n</div>');
     }
     return buf.join("");
 };

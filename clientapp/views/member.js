@@ -95,9 +95,10 @@ module.exports = BaseView.extend({
         if (power > 100) power = 100;
         if (damage > 100) damage = 100;
         var health = 100 - damage;
+        console.log(app.team);
         var healthPixels = Math.round(damage / 100 * 157) + 14,
             powerPixels = Math.round((100-power) / 100 * 157) + 14,
-            html = $(templates.boss({ healthPerc: health, attackPerc: power }));
+            html = $(templates.boss({ healthPerc: health, attackPerc: power, teamname: app.team.name }));
         html.find('.healthPerc .label').empty().text(health + '%').css('top', healthPixels);
         html.find('.healthPerc .mask').css('height', healthPixels);
         html.find('.attackPerc .label').empty().text(power + '%').css('top', powerPixels);
