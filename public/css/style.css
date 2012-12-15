@@ -589,6 +589,10 @@ body > .modal {
     width: 100%; }
   body > .modal.settings {
     margin-top: -210px; }
+  body > .modal.assigntask {
+    margin-top: -160px; }
+    body > .modal.assigntask input {
+      margin-top: 10px; }
   body > .modal.attack {
     margin-top: -160px; }
     body > .modal.attack .actions .exit {

@@ -146,11 +146,13 @@ module.exports = BaseView.extend({
         });
     },
     displayAssignTaskModal: function (e) {
-        var memberId = $(e.target).closest('.member').attr('data-id'),
-                html ='Careful, assigning too many tasks will make your menacing project even bigger.';
+        var $member = $(e.target).closest('.member'),
+            memberId = $member.attr('data-id'),
+            memberName = $member.attr('data-name'),
+            html ='Careful. Assigning too many tasks will make your menacing project even bigger.';
         html += "<input type='text' />";
         var modal = new Skylite({
-            title: 'Assign Task',
+            title: 'Assign Task to ' + memberName,
             body: html,
             type: 'assigntask',
             actions: {
@@ -161,5 +163,6 @@ module.exports = BaseView.extend({
                 }
             }
         });
+        modal.$modal.find('input').focus();
     }
 });

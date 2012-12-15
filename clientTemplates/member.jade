@@ -1,4 +1,4 @@
-li.member(data-id=locals.member.id)
+li.member(data-id=locals.member.id, data-name=locals.member.fullName())
   .userImage
     img(src= locals.member.picUrl() + '?s=180')
   h2 #{locals.member.character.name}
