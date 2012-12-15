@@ -5,8 +5,30 @@ var MainView = require('views/main'),
     Backbone = require('backbone'),
     cookies = require('cookieReader'),
     _ = require('underscore'),
-    API = require('andbang');
+    API = require('andbang'),
+    modalOptions = {
+        cssIn: {opacity: 0, top: '45%'},
+        animIn: [{opacity: 1, top: '50%'}, 200],
+        animOut: [{opacity: 0, top: '55%'}, 400]
+    },
+    Skylite = require('skylite');
 
+(function($) {
+    $.alert = function (options) {
+        if (typeof(options) == 'string') options = { title: options };
+        $.extend(options, modalOptions);
+        options.type = 'alert';
+        return new window.Skylite(options);
+    }
+    $.confirm = function (options) {
+        $.extend(options, modalOptions);
+        options.type = 'confirm';
+        if (!options.actions.cancel) {
+            options.actions = $.extend({ cancel: function(){ return true; } }, options.actions);
+        }
+        return new window.Skylite(options);
+    }
+})(jQuery);
 
 module.exports = {
     // this is the the whole app initter

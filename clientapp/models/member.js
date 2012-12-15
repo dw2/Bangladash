@@ -54,7 +54,7 @@ module.exports = Backbone.Model.extend({
         this.damagingCount = app.team.damagingTasks.length;
     },
     handleCharacterUpdate: function() {
-        this.character = {name:"Derp", spec: "Wizard", level: 9000};
+        this.character = this.defaults.character;
         var self = this;
         $.ajax({
             url: 'http://localhost:5984/bangladash/member-'+self.id,
@@ -64,7 +64,9 @@ module.exports = Backbone.Model.extend({
                 console.log(error);
             },
             success: function (data, status, xhr) {
-                self.set('character', {name: data.name, level: data.level, spec: data.spec});
+                var character = {name: data.name, level: data.level, spec: data.spec};
+                self.set('character', character);
+                app.team.members._byId[self.id].character = character;
             }
         });
     }

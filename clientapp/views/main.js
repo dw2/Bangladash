@@ -12,6 +12,11 @@ var BaseView = require('views/base'),
 
 
 module.exports = BaseView.extend({
+    events: {
+        "keypress #chat textarea": "submitNewMessage",
+        "click menu .settings": "displaySettingsModal",
+        "click menu .attacks": "displayAttacksModal"
+    },
     initialize: function () {
         // when members are reset we want to redraw them all
         this.model.members.on('add', this.handleNewMember, this);
@@ -54,9 +59,6 @@ module.exports = BaseView.extend({
 
         peopleContainer.append(view.render().el);
     },
-    events: {
-        "keypress #chat textarea": "submitNewMessage"
-    },
     submitNewMessage: function(e) {
         var keyCode = e.which || e.keyCode;
         if (keyCode == 13) {
@@ -67,5 +69,36 @@ module.exports = BaseView.extend({
             });
             return false;
         }
+    },
+    displaySettingsModal: function () {
+        var me = _.find(app.team.members.models, function (member) { return member.attributes.me == true; }),
+            html = '<label for="character_name">Adventurer Name</label>' +
+            '<input id="character_name" type="text" value="' + me.character.name + '">' +
+            '<label for="character_spec">Class</label>' +
+            '<select id="character_spec">',
+            specs = ['Fighter', 'Wizard', 'Cleric', 'Ranger'];
+        _.each(specs, function(spec) {
+            html += '<option value="' + spec + '"' + (me.character.spec == spec ? ' selected="selected"' : '') + '>' + spec + '</option>';
+        });
+        html += '</select><label for="character_level">Level</label><select id="character_level">';
+        for (var _i = 1; _i <= 30; _i++) {
+            html += '<option value="' + _i + '"' + (me.character.level == _i ? ' selected="selected"' : '') + '>' + _i + '</option>';
+        }
+        html += '</select>';
+
+        var modal = new Skylite({
+            title: 'Character Sheet',
+            body: html,
+            type: 'settings',
+            actions: {
+                cancel: function() {},
+                save: function() {
+                    console.log('herp');
+                }
+            }
+        });
+    },
+    displayAttacksModal: function () {
+        console.log('something');
     }
 });

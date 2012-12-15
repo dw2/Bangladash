@@ -115,6 +115,37 @@ body {
 h1, h2, h3 {
   font-family: DiavloLight, sans-serif; }
 
+menu {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 5; }
+  menu button {
+    background: center center no-repeat #444444;
+    -moz-border-radius: 40px;
+    -o-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+    -moz-box-shadow: 0 0 10px black;
+    -webkit-box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black;
+    display: block;
+    height: 80px;
+    margin: 0 0 10px;
+    overflow: hidden;
+    text-indent: -500px;
+    -moz-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    -webkit-transition: background 0.2s linear;
+    transition: background 0.2s linear;
+    width: 80px; }
+    menu button.settings {
+      background-image: url(/img/icon-gear.png); }
+    menu button.attacks {
+      background-image: url(/img/icon-sword.png); }
+    menu button:hover {
+      background-color: #999999; }
+
 #chat {
   bottom: 395px;
   left: 0;
@@ -363,3 +394,96 @@ h1, h2, h3 {
         color: #1583c2; }
         #people .member .attackPerc.cleric .label:before {
           border-color: #1583c2; }
+
+#mask {
+  background: rgba(80, 80, 80, 0.9);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 99; }
+
+body > .modal {
+  background: #eeeeee;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: 0 0 200px black;
+  -webkit-box-shadow: 0 0 200px black;
+  box-shadow: 0 0 200px black;
+  color: #777777;
+  left: 50%;
+  margin: -120px 0 0 -220px;
+  padding: 50px 50px 100px;
+  position: fixed;
+  text-align: left;
+  top: 50%;
+  width: 340px;
+  z-index: 100; }
+  body > .modal.settings {
+    margin-top: -210px; }
+  body > .modal h1 {
+    color: black;
+    font: 30px DiavloLight, sans-serif;
+    padding: 0 0 20px; }
+  body > .modal p {
+    font-size: 16px;
+    padding: 0 0 20px; }
+  body > .modal .actions {
+    bottom: 30px;
+    position: absolute;
+    right: 30px; }
+    body > .modal .actions button {
+      background: -moz-linear-gradient(top, #444444, #111111) ;
+      background: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#111111)) ;
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#444444, endColorstr=#111111)";
+      -moz-border-radius: 5px;
+      -o-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      color: #cccccc;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 10px;
+      padding: 0 20px;
+      text-transform: capitalize; }
+      body > .modal .actions button:hover {
+        background: -moz-linear-gradient(top, #555555, #222222) ;
+        background: -webkit-gradient(linear, left top, left bottom, from(#555555), to(#222222)) ;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#555555, endColorstr=#222222)";
+        color: white; }
+      body > .modal .actions button:last-child {
+        background: -moz-linear-gradient(top, #408034, #305a28) ;
+        background: -webkit-gradient(linear, left top, left bottom, from(#408034), to(#305a28)) ;
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#408034, endColorstr=#305a28)";
+        color: #c7e9c1; }
+        body > .modal .actions button:last-child:hover {
+          background: -moz-linear-gradient(top, #52a643, #408034) ;
+          background: -webkit-gradient(linear, left top, left bottom, from(#52a643), to(#408034)) ;
+          -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#52a643, endColorstr=#408034)";
+          color: white; }
+  body > .modal label {
+    clear: both;
+    display: block;
+    float: left;
+    margin: 15px 0 5px; }
+  body > .modal input[type="text"],
+  body > .modal select {
+    background: white;
+    border: 1px solid #dddddd;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    display: block;
+    float: left;
+    padding: 10px; }
+  body > .modal input[type="text"] {
+    display: block;
+    width: 100%; }

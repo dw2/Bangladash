@@ -9,6 +9,29 @@ body
 h1, h2, h3
   font-family: DiavloLight, sans-serif
 
+menu
+  position: fixed
+  right: 10px
+  top: 10px
+  z-index: 5
+  button
+    background: center center no-repeat #444
+    +border_radius(40)
+    +box_shadow(0 0 10px #000)
+    display: block
+    height: 80px
+    margin: 0 0 10px
+    overflow: hidden
+    text-indent: -500px
+    +transition(background .2s linear)
+    width: 80px
+    &.settings
+      background-image: url(/img/icon-gear.png)
+    &.attacks
+      background-image: url(/img/icon-sword.png)
+    &:hover
+      background-color: #999
+
 #chat
   bottom: 395px
   left: 0
@@ -232,3 +255,75 @@ h1, h2, h3
         color: #1583c2
         .label:before
           border-color: #1583c2
+
+#mask
+  background: rgba(80,80,80,.9)
+  bottom: 0
+  left: 0
+  position: fixed
+  right: 0
+  top: 0
+  z-index: 99
+
+body > .modal
+  background: #eee
+  +border_radius(8)
+  +box_shadow(0 0 200px #000)
+  color: #777
+  left: 50%
+  margin: -120px 0 0 -220px
+  padding: 50px 50px 100px
+  position: fixed
+  text-align: left
+  top: 50%
+  width: 340px
+  z-index: 100
+  &.settings
+    margin-top: -210px
+  h1
+    color: #000
+    font: 30px DiavloLight, sans-serif
+    padding: 0 0 20px
+  p
+    font-size: 16px
+    padding: 0 0 20px
+  .actions
+    bottom: 30px
+    position: absolute
+    right: 30px
+    button
+      +bg_gradient(#444,#111)
+      +border_radius(5)
+      color: #ccc
+      height: 40px
+      line-height: 40px
+      margin-left: 10px
+      padding: 0 20px
+      text-transform: capitalize
+      &:hover
+        +bg_gradient(#555,#222)
+        color: #fff
+      &:last-child
+        +bg_gradient(#408034,#305A28)
+        color: #c7e9c1
+        &:hover
+          +bg_gradient(#52A643,#408034)
+          color: #fff
+  label
+    clear: both
+    display: block
+    float: left
+    margin: 15px 0 5px
+  input[type="text"],
+  select
+    background: #fff
+    border: 1px solid #ddd
+    +border_radius(5)
+    +box_sizing(border-box)
+    clear: both
+    display: block
+    float: left
+    padding: 10px
+  input[type="text"]
+    display: block
+    width: 100%
