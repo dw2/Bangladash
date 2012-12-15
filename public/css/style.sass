@@ -48,7 +48,9 @@ h1, h2, h3
       +border_radius(90)
       +box_shadow(0 0 60px #000)
       height: 180px
+      position: relative
       width: 180px
+      z-index: 4
       img
         +border_radius(90)
         display: block
@@ -98,8 +100,16 @@ h1, h2, h3
         margin: 22px 0 0
         position: absolute
         right: 110px
-        &:after
-          content: '%'
+        &:before
+          border-top: 1px solid #d63c31
+          content: ''
+          height: 0
+          left: 100%
+          margin: 0 0 0 3px
+          position: absolute
+          right: -56px
+          top: 50%
+          z-index: 1
     .attackPerc
       background: 0 0 no-repeat
       height: 280px
@@ -107,18 +117,6 @@ h1, h2, h3
       right: 2px
       top: 11px
       width: 150px
-      &.wizard
-        background-image: url(/img/attack-bar-wizard.png)
-        color: #875ead
-      &.fighter
-        background-image: url(/img/attack-bar-fighter.png)
-        color: #a29422
-      &.ranger
-        background-image: url(/img/attack-bar-ranger.png)
-        color: #3a9029
-      &.cleric
-        background-image: url(/img/attack-bar-cleric.png)
-        color: #1583c2
       .mask
         background: url(/img/ring.png) 100% 0 no-repeat
         display: block
@@ -134,5 +132,33 @@ h1, h2, h3
         line-height: 20px
         margin: 22px 0 0
         position: absolute
-        &:after
-          content: '%'
+        &:before
+          border-top: 1px solid
+          content: ''
+          height: 0
+          left: -56px
+          margin: 0 0 0 3px
+          position: absolute
+          right: 100%
+          top: 50%
+          z-index: 1
+      &.wizard
+        background-image: url(/img/attack-bar-wizard.png)
+        color: #875ead
+        .label:before
+          border-color: #875ead
+      &.fighter
+        background-image: url(/img/attack-bar-fighter.png)
+        color: #a29422
+        .label:before
+          border-color: #a29422
+      &.ranger
+        background-image: url(/img/attack-bar-ranger.png)
+        color: #3a9029
+        .label:before
+          border-color: #3a9029
+      &.cleric
+        background-image: url(/img/attack-bar-cleric.png)
+        color: #1583c2
+        .label:before
+          border-color: #1583c2
