@@ -122,15 +122,16 @@ h1, h2, h3 {
   position: fixed;
   text-align: left;
   top: 0;
-  width: 30%; }
+  width: 33%;
+  z-index: 3; }
   #chat .chat {
-    bottom: 10px;
+    bottom: 60px;
     left: 0;
     position: absolute;
-    right: 0; }
+    right: 10px; }
   #chat .message {
     list-style: none;
-    margin: 10px 0 0 40px;
+    margin: 10px 0 0 10px;
     padding: 0 0 0 55px;
     position: relative; }
     #chat .message .userImage {
@@ -175,14 +176,37 @@ h1, h2, h3 {
         right: 100%;
         top: 12px;
         width: 0; }
+  #chat textarea {
+    background: #333333;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    bottom: 10px;
+    color: black;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px 15px;
+    left: 10px;
+    position: absolute;
+    right: 10px;
+    -moz-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    -webkit-transition: background 0.2s linear;
+    transition: background 0.2s linear; }
+    #chat textarea:focus {
+      background: #444444;
+      color: #cccccc; }
 
 #people {
   background: url(/img/carbon_fibre.png) top center repeat #282828;
   bottom: 0;
+  height: 385px;
   left: 0;
   position: fixed;
   right: 0;
-  text-align: center; }
+  text-align: center;
+  z-index: 2; }
   #people:before {
     background: url(/img/carbon_fibre_edge.png) top center repeat-x;
     content: "";

@@ -34,12 +34,15 @@ module.exports = BaseView.extend({
     },
     handleChatsReset: function () {
         // create and append a view for each member
-        //this.model.members.each(this.handleNewMember, this);
+        this.model.chats.each(this.handleNewChat, this);
     },
     handleNewChat: function (chat) {
-        var chatContainer = this.$('.chat');
-        view = new ChatView({model: chat});
-        chatContainer.append(view.render().el);
+        if (!chat.attributes) return;
+
+        var chatContainer = this.$('.chat'),
+            view = new ChatView({ model: chat }),
+            r = view.render();
+        if (r) chatContainer.append(r.el);
     },
     handleMembersReset: function () {
         // create and append a view for each member
@@ -50,5 +53,19 @@ module.exports = BaseView.extend({
             view = new MemberView({model: member});
 
         peopleContainer.append(view.render().el);
+    },
+    events: {
+        "keypress #chat textarea": "submitNewMessage"
+    },
+    submitNewMessage: function(e) {
+        var keyCode = e.which || e.keyCode;
+        if (keyCode == 13) {
+            var $textarea = $(e.target),
+                message = $textarea.val();
+            app.api.sendChat(app.team.id, message, function(err, chat) {
+                if (chat && $textarea.val() == message) $textarea.val('');
+            });
+            return false;
+        }
     }
 });

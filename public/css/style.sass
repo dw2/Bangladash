@@ -16,15 +16,16 @@ h1, h2, h3
   position: fixed
   text-align: left
   top: 0
-  width: 30%
+  width: 33%
+  z-index: 3
   .chat
-    bottom: 10px
+    bottom: 60px
     left: 0
     position: absolute
-    right: 0
+    right: 10px
   .message
     list-style: none
-    margin: 10px 0 0 40px 
+    margin: 10px 0 0 10px 
     padding: 0 0 0 55px
     position: relative
     .userImage
@@ -58,14 +59,31 @@ h1, h2, h3
         right: 100%
         top: 12px
         width: 0
+  textarea
+    background: #333
+    +border_radius(5)
+    bottom: 10px
+    color: #000
+    height: 20px
+    line-height: 20px
+    padding: 10px 15px
+    left: 10px
+    position: absolute
+    right: 10px
+    +transition(background .2s linear)
+    &:focus
+      background: #444
+      color: #ccc
 
 #people
   background: url(/img/carbon_fibre.png) top center repeat #282828
   bottom: 0
+  height: 385px
   left: 0
   position: fixed
   right: 0
   text-align: center
+  z-index: 2
   &:before
     background: url(/img/carbon_fibre_edge.png) top center repeat-x
     content: ''

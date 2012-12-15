@@ -16,7 +16,7 @@ exports.app = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<aside id="chat">\n  <ol class="chat"></ol>\n</aside>\n<aside id="tasks"></aside>\n<section id="people">\n  <ol class="people"></ol>\n</section>');
+        buf.push('\n<aside id="chat">\n  <ol class="chat"></ol>\n  <textarea></textarea>\n</aside>\n<aside id="tasks"></aside>\n<section id="people">\n  <ol class="people"></ol>\n</section>');
     }
     return buf.join("");
 };
@@ -66,7 +66,7 @@ exports.message = function anonymous(locals, attrs, escape, rethrow, merge) {
         var __indent = [];
         buf.push('\n<li class="message">\n  <div class="userImage"><img');
         buf.push(attrs({
-            src: locals.member.picUrl() + "?s=40"
+            src: locals.picUrl
         }, {
             src: true
         }));

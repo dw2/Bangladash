@@ -12,10 +12,14 @@ var BaseView = require('views/base'),
 
 module.exports = BaseView.extend({
     render: function () {
+        if (!this.model) return;
+        if (!$.trim(this.model.attributes.message)) return;
+        var member = app.team.members._byId[this.model.attributes.from];
+        if (!member) return;
         // Here we replace the default 'el'.
         this.setElement(templates.message({
             message: this.model,
-            member: app.team.members._byId[this.model.attributes.from]
+            picUrl: member.picUrl() + '?s=40'
         }));
         // This is what makes the declaritive bindings above
         // actually work. We're just calling a method on the
