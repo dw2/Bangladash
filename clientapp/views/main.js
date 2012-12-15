@@ -8,8 +8,8 @@ var BaseView = require('views/base'),
     _ = require('underscore'),
     templates = require('templates'),
     MemberView = require('views/member');
-    
-    
+
+
 module.exports = BaseView.extend({
     initialize: function () {
         // register some handlers on the "shippedTasks" collections
@@ -19,12 +19,16 @@ module.exports = BaseView.extend({
         // register some handlers on the "shippedTasks" collections
         this.model.damagingTasks.on('add', this.handleNewTask, this);
         this.model.damagingTasks.on('reset', this.handleTasksReset, this);
-        
+
         // when members are reset we want to redraw them all
         this.model.members.on('add', this.handleNewMember, this);
         this.model.members.on('reset', this.handleMembersReset, this);
-        
-        // because the data is handled seperately we can just tell this main 
+
+        // when members are reset we want to redraw them all
+        this.model.chats.on('add', this.handleNewChat, this);
+        this.model.chats.on('reset', this.handleChatsReset, this);
+
+        // because the data is handled seperately we can just tell this main
         // app view to render itself when the DOM is ready.
         // This is just a shortcut for doing $(document).ready();
         $(_.bind(this.render, this));
@@ -40,10 +44,19 @@ module.exports = BaseView.extend({
     handleNewTask: function (model) {
         this.$('.shippedContainer').prepend(templates.shipped({task: model}));
     },
-    // If we reset the task list (when it's a new day) we just want to 
+    // If we reset the task list (when it's a new day) we just want to
     // clear that html from the DOM.
     handleTasksReset: function () {
         this.$('.shippedContainer').empty();
+    },
+    handleChatsReset: function () {
+        // create and append a view for each member
+        //this.model.members.each(this.handleNewMember, this);
+    },
+    handleNewChat: function (member) {
+        //var peopleContainer = this.$('.people'),
+        //    view = new MemberView({model: member});
+        //peopleContainer.append(view.render().el);
     },
     handleMembersReset: function () {
         // create and append a view for each member
@@ -52,7 +65,7 @@ module.exports = BaseView.extend({
     handleNewMember: function (member) {
         var peopleContainer = this.$('.people'),
             view = new MemberView({model: member});
-        
+
         peopleContainer.append(view.render().el);
     }
 });
