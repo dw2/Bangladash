@@ -9,6 +9,56 @@ body
 h1, h2, h3
   font-family: DiavloLight, sans-serif
 
+#chat
+  bottom: 395px
+  left: 0
+  overflow: hidden
+  position: fixed
+  text-align: left
+  top: 0
+  width: 30%
+  .chat
+    bottom: 10px
+    left: 0
+    position: absolute
+    right: 0
+  .message
+    list-style: none
+    margin: 10px 0 0 40px 
+    padding: 0 0 0 55px
+    position: relative
+    .userImage
+      background: #000
+      +border_radius(20)
+      +box_shadow(0 0 3px #000)
+      height: 40px
+      left: 0
+      position: absolute
+      top: 0
+      width: 40px
+      img
+        +border_radius(20)
+        display: block
+        height: 40px
+        width: 40px
+    q
+      background: #555
+      +border_radius(5)
+      color: #ccc
+      display: inline-block
+      line-height: 20px
+      padding: 10px 15px
+      position: relative
+      &:before
+        border: 8px solid transparent
+        border-right-color: #555
+        content: ''
+        height: 0
+        position: absolute
+        right: 100%
+        top: 12px
+        width: 0
+
 #people
   background: url(/img/carbon_fibre.png) top center repeat #282828
   bottom: 0
@@ -29,8 +79,9 @@ h1, h2, h3
     background: url(/img/ring.png) 50% 42px no-repeat
     color: #777
     display: inline-block
+    list-style: none
     margin: 0 20px
-    padding: 60px
+    padding: 60px 60px 40px
     position: relative
     z-index: 2
     &:before
@@ -59,7 +110,7 @@ h1, h2, h3
     h2
       color: #ccc
       font-size: 30px
-      height: 45px
+      height: 50px
       line-height: 30px
       padding: 10px 0
       &:after
@@ -67,6 +118,7 @@ h1, h2, h3
         font-size: 15px
         height: 15px
         line-height: 15px
+        padding: 5px 0 0
         color: #444
         content: '\2022\00A0\2022\00A0\2022'
     .stats

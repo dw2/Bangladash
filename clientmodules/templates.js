@@ -16,25 +16,7 @@ exports.app = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<aside id="chat">\n  <div class="chat"></div>\n</aside>\n<aside id="tasks"></aside>\n<section id="people">\n  <div class="people"></div>\n</section>');
-    }
-    return buf.join("");
-};
-
-// chat.jade compiled template
-exports.chat = function anonymous(locals, attrs, escape, rethrow, merge) {
-    attrs = attrs || jade.attrs;
-    escape = escape || jade.escape;
-    rethrow = rethrow || jade.rethrow;
-    merge = merge || jade.merge;
-    var buf = [];
-    with (locals || {}) {
-        var interp;
-        var __indent = [];
-        buf.push('\n<div class="chat">\n  <p class="message">');
-        var __val__ = locals.chat.attributes.message;
-        buf.push(escape(null == __val__ ? "" : __val__));
-        buf.push("</p>\n</div>");
+        buf.push('\n<aside id="chat">\n  <ol class="chat"></ol>\n</aside>\n<aside id="tasks"></aside>\n<section id="people">\n  <ol class="people"></ol>\n</section>');
     }
     return buf.join("");
 };
@@ -49,7 +31,7 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<div class="well member">\n  <div class="userImage"><img');
+        buf.push('\n<li class="member">\n  <div class="userImage"><img');
         buf.push(attrs({
             src: locals.member.picUrl() + "?s=180"
         }, {
@@ -67,7 +49,31 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
         }, {
             "class": true
         }));
-        buf.push('>\n    <div class="label">' + escape((interp = locals.attackPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n</div>');
+        buf.push('>\n    <div class="label">' + escape((interp = locals.attackPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n</li>');
+    }
+    return buf.join("");
+};
+
+// message.jade compiled template
+exports.message = function anonymous(locals, attrs, escape, rethrow, merge) {
+    attrs = attrs || jade.attrs;
+    escape = escape || jade.escape;
+    rethrow = rethrow || jade.rethrow;
+    merge = merge || jade.merge;
+    var buf = [];
+    with (locals || {}) {
+        var interp;
+        var __indent = [];
+        buf.push('\n<li class="message">\n  <div class="userImage"><img');
+        buf.push(attrs({
+            src: locals.member.picUrl() + "?s=40"
+        }, {
+            src: true
+        }));
+        buf.push("/></div>\n  <q>");
+        var __val__ = locals.message.attributes.message;
+        buf.push(escape(null == __val__ ? "" : __val__));
+        buf.push("</q>\n</li>");
     }
     return buf.join("");
 };

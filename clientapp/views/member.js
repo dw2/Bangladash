@@ -41,11 +41,13 @@ module.exports = BaseView.extend({
         this.model.on('change:activeTask', this.handleActiveTaskChange, this);
         this.model.on('change:shippedCount', this.handleShippedCountChange, this);
         this.model.on('change:damagingCount', this.handleDamagingCountChange, this);
+        this.model.on('change:character', this.handleCharacterChange, this);
 
         // call them all once
         this.handleActiveTaskChange();
         this.handleShippedCountChange();
         this.handleDamagingCountChange();
+        this.handleCharacterChange();
 
         return this;
     },
@@ -67,6 +69,12 @@ module.exports = BaseView.extend({
         var  pixels = Math.round((100 - p) / 100 * 157) + 14;
         container.find('.label').empty().text(p + '%').css('top', pixels);
         container.find('.mask').css('height', pixels);
+    },
+    handleCharacterChange: function () {
+        var character = this.model.get('character');
+        this.$('.stats').empty().text(character.level + ' - ' + character.spec);
+        this.$('h2').empty().text(character.name);
+        this.$('.attackPerc').attr('class', 'attackPerc ' + character.spec.toLowerCase());
     },
     destroy: function () {
         this.model.off();

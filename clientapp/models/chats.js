@@ -3,7 +3,6 @@ var Backbone = require('backbone'),
 
 
 module.exports = Backbone.Collection.extend({
-    type: 'chats',
     model: Chat,
     fetch: function () {
         var self = this;

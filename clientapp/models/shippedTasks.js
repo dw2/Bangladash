@@ -27,13 +27,8 @@ module.exports = Backbone.Collection.extend({
                 // samde day or not.
                 var now = Date.create(),
                     shippedDate = Date.create(Number(task.shippedAt)),
-                    startOfToday = (now.getHours() < 4) ? Date.create('4am yesterday') : Date.create('4am today'),
-                    endOfToday = startOfToday.clone().addHours(24);
-
-                // here we check to see if this is still "today", which we consider to
-                // be 4:00am for the sake of what we actually consider to be part of
-                // the same workday.
-                if (shippedDate.isBetween(startOfToday, endOfToday)) {
+                    twentyFourHoursAgo = Date.create('24 hours ago');
+                if (shippedDate.isAfter(twentyFourHoursAgo)) {
                     self.add(task);   
                 }
             });

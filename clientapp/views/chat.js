@@ -13,7 +13,10 @@ var BaseView = require('views/base'),
 module.exports = BaseView.extend({
     render: function () {
         // Here we replace the default 'el'.
-        this.setElement(templates.chat({chat: this.model}));
+        this.setElement(templates.message({
+            message: this.model,
+            member: app.team.members._byId[this.model.attributes.from]
+        }));
         // This is what makes the declaritive bindings above
         // actually work. We're just calling a method on the
         // base view that set up the various handlers necessary
