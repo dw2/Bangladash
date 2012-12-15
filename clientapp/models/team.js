@@ -10,7 +10,8 @@ var Backbone = require('backbone'),
     Members = require('models/members'),
     ShippedTasks = require('models/shippedTasks'),
     DamagingTasks = require('models/damagingTasks');
-    Chats = require('models/chats');
+    Chats = require('models/chats'),
+    templates = require('templates');
 
 
 module.exports = Backbone.Model.extend({
@@ -123,8 +124,8 @@ module.exports = Backbone.Model.extend({
         this.shippedTasks.reset();
     },
     updateBossStats: function () {
-        var power = this.damagingTasks.length,
-            damage = this.shippedTasks.length;
+        var damage = this.shippedTasks.length,
+            power = this.damagingTasks.length;
         this.set('bossDamagePerc', damage);
         this.set('bossAttackPerc', power);
     }

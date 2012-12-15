@@ -247,154 +247,185 @@ menu {
     right: 0;
     top: -38px;
     z-index: 1; }
-  #people .member {
-    background: url(/img/ring.png) 50% 42px no-repeat;
-    color: #777777;
-    display: inline-block;
-    list-style: none;
-    margin: 0 20px;
-    padding: 60px 60px 40px;
+
+#boss {
+  left: 50%;
+  margin: 0 0 0 -170px;
+  position: absolute; }
+
+#boss .boss,
+#people .member {
+  background: url(/img/ring.png) 50% 42px no-repeat;
+  color: #777777;
+  display: inline-block;
+  list-style: none;
+  margin: 0 20px;
+  padding: 60px 60px 40px;
+  position: relative;
+  width: 180px;
+  z-index: 2; }
+  #boss .boss:before,
+  #people .member:before {
+    background: url(/img/keystone.png) 0 0 no-repeat;
+    content: "";
+    height: 46px;
+    left: 50%;
+    margin: 0 0 0 -60px;
+    position: absolute;
+    top: 22px;
+    width: 120px;
+    z-index: 3; }
+  #boss .boss .userImage,
+  #people .member .userImage {
+    background: black;
+    -moz-border-radius: 90px;
+    -o-border-radius: 90px;
+    -webkit-border-radius: 90px;
+    border-radius: 90px;
+    -moz-box-shadow: 0 0 60px black;
+    -webkit-box-shadow: 0 0 60px black;
+    box-shadow: 0 0 60px black;
+    height: 180px;
     position: relative;
     width: 180px;
-    z-index: 2; }
-    #people .member:before {
-      background: url(/img/keystone.png) 0 0 no-repeat;
-      content: "";
-      height: 46px;
-      left: 50%;
-      margin: 0 0 0 -60px;
-      position: absolute;
-      top: 22px;
-      width: 120px;
-      z-index: 3; }
-    #people .member .userImage {
-      background: black;
+    z-index: 4; }
+    #boss .boss .userImage img,
+    #people .member .userImage img {
       -moz-border-radius: 90px;
       -o-border-radius: 90px;
       -webkit-border-radius: 90px;
       border-radius: 90px;
-      -moz-box-shadow: 0 0 60px black;
-      -webkit-box-shadow: 0 0 60px black;
-      box-shadow: 0 0 60px black;
+      display: block;
       height: 180px;
-      position: relative;
-      width: 180px;
-      z-index: 4; }
-      #people .member .userImage img {
-        -moz-border-radius: 90px;
-        -o-border-radius: 90px;
-        -webkit-border-radius: 90px;
-        border-radius: 90px;
-        display: block;
-        height: 180px;
-        width: 180px; }
-    #people .member h2 {
-      color: #cccccc;
-      font-size: 30px;
-      height: 50px;
-      line-height: 30px;
-      padding: 10px 0; }
-      #people .member h2:after {
-        display: block;
-        font-size: 15px;
-        height: 15px;
-        line-height: 15px;
-        padding: 5px 0 0;
-        color: #444444;
-        content: "\2022\00A0\2022\00A0\2022"; }
-    #people .member .stats {
-      font-size: 20px;
-      line-height: 20px; }
-    #people .member .name {
+      width: 180px; }
+  #boss .boss h2,
+  #people .member h2 {
+    color: #cccccc;
+    font-size: 30px;
+    height: 50px;
+    line-height: 30px;
+    padding: 10px 0; }
+    #boss .boss h2:after,
+    #people .member h2:after {
+      display: block;
       font-size: 15px;
-      line-height: 15px; }
-    #people .member .activeTask {
-      display: none; }
-    #people .member .healthPerc {
-      background: url(/img/health-bar.png) 0 0 no-repeat;
-      color: #d63c31;
-      height: 280px;
-      left: 2px;
+      height: 15px;
+      line-height: 15px;
+      padding: 5px 0 0;
+      color: #444444;
+      content: "\2022\00A0\2022\00A0\2022"; }
+  #boss .boss .stats,
+  #people .member .stats {
+    font-size: 20px;
+    line-height: 20px; }
+  #boss .boss .name,
+  #people .member .name {
+    font-size: 15px;
+    line-height: 15px; }
+  #boss .boss .activeTask,
+  #people .member .activeTask {
+    display: none; }
+  #boss .boss .healthPerc,
+  #people .member .healthPerc {
+    background: url(/img/health-bar.png) 0 0 no-repeat;
+    color: #d63c31;
+    height: 280px;
+    left: 2px;
+    position: absolute;
+    top: 11px;
+    width: 150px; }
+    #boss .boss .healthPerc .mask,
+    #people .member .healthPerc .mask {
+      background: url(/img/ring.png) 0 0 no-repeat;
+      display: block;
+      height: 160px;
+      left: 47px;
       position: absolute;
-      top: 11px;
-      width: 150px; }
-      #people .member .healthPerc .mask {
-        background: url(/img/ring.png) 0 0 no-repeat;
-        display: block;
-        height: 160px;
-        left: 47px;
-        position: absolute;
-        top: 32px;
-        width: 101px; }
-      #people .member .healthPerc .label {
-        font-size: 20px;
-        height: 20px;
-        line-height: 20px;
-        margin: 22px 0 0;
-        position: absolute;
-        right: 110px; }
-        #people .member .healthPerc .label:before {
-          border-top: 1px solid #d63c31;
-          content: "";
-          height: 0;
-          left: 100%;
-          margin: 0 0 0 3px;
-          position: absolute;
-          right: -56px;
-          top: 50%;
-          z-index: 1; }
-    #people .member .attackPerc {
-      background: 0 0 no-repeat;
-      height: 280px;
+      top: 32px;
+      width: 101px; }
+    #boss .boss .healthPerc .label,
+    #people .member .healthPerc .label {
+      font-size: 20px;
+      height: 20px;
+      line-height: 20px;
+      margin: 22px 0 0;
       position: absolute;
-      right: 2px;
-      top: 11px;
-      width: 150px; }
-      #people .member .attackPerc .mask {
-        background: url(/img/ring.png) 100% 0 no-repeat;
-        display: block;
-        height: 160px;
+      right: 110px; }
+      #boss .boss .healthPerc .label:before,
+      #people .member .healthPerc .label:before {
+        border-top: 1px solid #d63c31;
+        content: "";
+        height: 0;
+        left: 100%;
+        margin: 0 0 0 3px;
         position: absolute;
-        right: 47px;
-        top: 32px;
-        width: 101px; }
-      #people .member .attackPerc .label {
-        font-size: 20px;
-        height: 20px;
-        left: 110px;
-        line-height: 20px;
-        margin: 22px 0 0;
-        position: absolute; }
-        #people .member .attackPerc .label:before {
-          border-top: 1px solid;
-          content: "";
-          height: 0;
-          left: -56px;
-          margin: 0 0 0 3px;
-          position: absolute;
-          right: 100%;
-          top: 50%;
-          z-index: 1; }
-      #people .member .attackPerc.wizard {
-        background-image: url(/img/attack-bar-wizard.png);
-        color: #875ead; }
-        #people .member .attackPerc.wizard .label:before {
-          border-color: #875ead; }
-      #people .member .attackPerc.fighter {
-        background-image: url(/img/attack-bar-fighter.png);
-        color: #a29422; }
-        #people .member .attackPerc.fighter .label:before {
-          border-color: #a29422; }
-      #people .member .attackPerc.ranger {
-        background-image: url(/img/attack-bar-ranger.png);
-        color: #3a9029; }
-        #people .member .attackPerc.ranger .label:before {
-          border-color: #3a9029; }
-      #people .member .attackPerc.cleric {
-        background-image: url(/img/attack-bar-cleric.png);
-        color: #1583c2; }
-        #people .member .attackPerc.cleric .label:before {
-          border-color: #1583c2; }
+        right: -56px;
+        top: 50%;
+        z-index: 1; }
+  #boss .boss .attackPerc,
+  #people .member .attackPerc {
+    background: 0 0 no-repeat;
+    height: 280px;
+    position: absolute;
+    right: 2px;
+    top: 11px;
+    width: 150px; }
+    #boss .boss .attackPerc .mask,
+    #people .member .attackPerc .mask {
+      background: url(/img/ring.png) 100% 0 no-repeat;
+      display: block;
+      height: 160px;
+      position: absolute;
+      right: 47px;
+      top: 32px;
+      width: 101px; }
+    #boss .boss .attackPerc .label,
+    #people .member .attackPerc .label {
+      font-size: 20px;
+      height: 20px;
+      left: 110px;
+      line-height: 20px;
+      margin: 22px 0 0;
+      position: absolute; }
+      #boss .boss .attackPerc .label:before,
+      #people .member .attackPerc .label:before {
+        border-top: 1px solid;
+        content: "";
+        height: 0;
+        left: -56px;
+        margin: 0 0 0 3px;
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        z-index: 1; }
+    #boss .boss .attackPerc.wizard,
+    #people .member .attackPerc.wizard {
+      background-image: url(/img/attack-bar-wizard.png);
+      color: #875ead; }
+      #boss .boss .attackPerc.wizard .label:before,
+      #people .member .attackPerc.wizard .label:before {
+        border-color: #875ead; }
+    #boss .boss .attackPerc.fighter,
+    #people .member .attackPerc.fighter {
+      background-image: url(/img/attack-bar-fighter.png);
+      color: #a29422; }
+      #boss .boss .attackPerc.fighter .label:before,
+      #people .member .attackPerc.fighter .label:before {
+        border-color: #a29422; }
+    #boss .boss .attackPerc.ranger,
+    #people .member .attackPerc.ranger {
+      background-image: url(/img/attack-bar-ranger.png);
+      color: #3a9029; }
+      #boss .boss .attackPerc.ranger .label:before,
+      #people .member .attackPerc.ranger .label:before {
+        border-color: #3a9029; }
+    #boss .boss .attackPerc.cleric,
+    #people .member .attackPerc.cleric {
+      background-image: url(/img/attack-bar-cleric.png);
+      color: #1583c2; }
+      #boss .boss .attackPerc.cleric .label:before,
+      #people .member .attackPerc.cleric .label:before {
+        border-color: #1583c2; }
 
 #mask {
   background: rgba(80, 80, 80, 0.9);
