@@ -16,7 +16,22 @@ exports.app = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<menu>\n  <button class="settings">Settings</button>\n  <button class="attacks">Attacks</button>\n</menu>\n<aside id="chat">\n  <ol class="chat"></ol>\n  <textarea></textarea>\n</aside>\n<aside id="tasks"></aside>\n<section id="people">\n  <ol class="people"></ol>\n</section>');
+        buf.push('\n<menu>\n  <button class="settings">Settings</button>\n  <button class="attacks">Attacks</button>\n</menu>\n<aside id="chat">\n  <ol class="chat"></ol>\n  <textarea></textarea>\n</aside>\n<aside id="tasks"></aside>\n<aside id="boss"></aside>\n<section id="people">\n  <ol class="people"></ol>\n</section>');
+    }
+    return buf.join("");
+};
+
+// boss.jade compiled template
+exports.boss = function anonymous(locals, attrs, escape, rethrow, merge) {
+    attrs = attrs || jade.attrs;
+    escape = escape || jade.escape;
+    rethrow = rethrow || jade.rethrow;
+    merge = merge || jade.merge;
+    var buf = [];
+    with (locals || {}) {
+        var interp;
+        var __indent = [];
+        buf.push('\n<div class="boss">\n  <div class="userImage"><img src="/img/boss-vegeta.jpg"/></div>\n  <h2>Super Sayan</h2>\n  <div class="stats">36 - Fighter</div>\n  <div class="name">Menacing Projects</div>\n  <div class="healthPerc">\n    <div class="label">' + escape((interp = locals.healthPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n  <div class="attackPerc fighter">\n    <div class="label">' + escape((interp = locals.attackPerc || 0) == null ? "" : interp) + '%</div>\n    <div class="mask"></div>\n  </div>\n</div>');
     }
     return buf.join("");
 };

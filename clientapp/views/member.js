@@ -61,6 +61,7 @@ module.exports = BaseView.extend({
         var pixels = Math.round((100 - power) / 100 * 157) + 14;
         container.find('.label').empty().text(power + '%').css('top', pixels);
         container.find('.mask').css('height', pixels);
+        this.renderBoss();
     },
     handleDamagingCountChange: function () {
         var container = this.$('.healthPerc'),
@@ -70,6 +71,7 @@ module.exports = BaseView.extend({
         var pixels = Math.round(damage / 100 * 157) + 14;
         container.find('.label').empty().text(health + '%').css('top', pixels);
         container.find('.mask').css('height', pixels);
+        this.renderBoss();
     },
     handleCharacterChange: function () {
         var character = this.model.get('character');
@@ -82,6 +84,15 @@ module.exports = BaseView.extend({
         this.remove();
     },
     renderBoss: function () {
-        
+        var container = $('#boss'),
+            power = app.team.attributes.bossAttackPerc,
+            damage = app.team.attributes.bossDamagePerc;
+        if (damage > 100) damage = 100;
+        var health = 100 - damage;
+        var pixels = Math.round(damage / 100 * 157) + 14,
+            html = $(templates.boss({ healthPerc: damage, attackPerc: power }));
+        html.find('.label').empty().text(health + '%').css('top', pixels);
+        html.find('.mask').css('height', pixels);
+        container.empty().html(html);
     }
 });
