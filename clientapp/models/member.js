@@ -57,15 +57,13 @@ module.exports = Backbone.Model.extend({
         this.character = {name:"Derp", spec: "Wizard", level: 9000};
         var self = this;
         $.ajax({
-            url: 'http://localhost:5984/bandladash/'+'member-'+self.id,
-            type: "GET",
-            dataType: "json",
+            url: 'http://localhost:5984/bangladash/member-'+self.id,
+            type: "get",
+            dataType: "jsonp",
             error: function(xhr,status, error) {
-                console.log(error);
                 self.character = {name:"?", spec: "?", level: 1};
             },
             success: function(data,status,xhr) {
-                console.log(data);
                 self.character.name = data.name;
                 self.character.spec = data.spec;
                 self.character.level = data.level;
