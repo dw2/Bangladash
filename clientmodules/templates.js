@@ -46,7 +46,14 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<li class="member">\n  <div class="userImage"><img');
+        buf.push("\n<li");
+        buf.push(attrs({
+            "data-id": locals.member.id,
+            "class": "member"
+        }, {
+            "data-id": true
+        }));
+        buf.push('>\n  <div class="userImage"><img');
         buf.push(attrs({
             src: locals.member.picUrl() + "?s=180"
         }, {

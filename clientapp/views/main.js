@@ -145,15 +145,19 @@ module.exports = BaseView.extend({
             });
         });
     },
-    displayAssignTaskModal: function () {
+    displayAssignTaskModal: function (e) {
+        var memberId = $(e.target).closest('.member').attr('data-id'),
+                html ='Careful, assigning too many tasks will make your menacing project even bigger.';
+        html += "<input type='text' />";
         var modal = new Skylite({
             title: 'Assign Task',
-            body: 'Careful, assigning too many tasks will make your menacing project even bigger.',
+            body: html,
             type: 'assigntask',
             actions: {
                 cancel: function() {},
                 Assign: function() {
-                    //console.log assign task!
+                    app.api.createTaskForTeammate(app.team.id, memberId, {"title": modal.$modal.find("input").val()}, function(err, task) {
+                    });
                 }
             }
         });
