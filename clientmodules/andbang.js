@@ -135,7 +135,7 @@
         WildEmitter.call(this);
 
         // if tokens are passed in, connect right away
-        if (opts.token && opts.autoConnect) this.connect();
+        if (opts.token && opts.autoConnect) this.validateToken(opts.token);
     };
 
     // inherit from emitter
@@ -170,34 +170,32 @@
     AndBang.prototype.connect = function (cb) {
         var self = this,
             apiEvents = [
-                'addMember',
-                'removeMember',
                 'editMember',
-                'newTask',
-                'deleteTask',
-                'editTask',
-                'shipTask',
-                'startTask',
-                'stopTask',
-                'laterTask',
-                'sortTask',
-                'unlaterTask',
-                'assignTask',
-                'unassignTask',
-                'watchTask',
-                'unwatchTask',
-                'updateTeam',
-                'deleteTeam',
-                'newProject',
-                'chat',
-                'directChat',
                 'online',
                 'offline',
-                'notification',
                 'clearNotifications',
-                'resetLastInteraction',
+                'editTeam',
+                'editTask',
+                'assignTask',
+                'deleteTask',
+                'shipTask',
+                'unshipTask',
+                'watchTask',
+                'unwatchTask',
+                'laterTask',
+                'unlaterTask',
+                'startTask',
+                'stopTask',
+                'sortTask',
+                'newTask',
                 'interaction',
-                'assignedTask'
+                'resetLastInteraction',
+                'removeMember',
+                'notification',
+                'addMember',
+                'deleteInvite',
+                'chat',
+                'directChat'
             ],
             i = 0,
             l = apiEvents.length;
@@ -237,8 +235,7 @@
                             self.emit('staleReconnect');
                             self.disconnect();
                         } else {
-                            parsed = JSON.parse(res);
-                            parsed.forEach(function (event) {
+                            res.forEach(function (event) {
                                 self.emit(event.channel, event);
                             });
                         }
@@ -323,7 +320,7 @@
         this._callApi('getAllMyTeamData', arguments);
     };
     
-    // Get notifications for my user in a given team.
+    // Get notifications for my user in a given team. The newest ones are always returned first. Only the last 50 are kept in the database. So there&#39;s no need to limit requests.
     AndBang.prototype.getMyNotifications = function (teamId, cb) {
         this._callApi('getMyNotifications', arguments);
     };
@@ -356,6 +353,11 @@
     // In And Bang we call completing a task &quot;shipping&quot;. This method does that.
     AndBang.prototype.shipTask = function (teamId, taskId, cb) {
         this._callApi('shipTask', arguments);
+    };
+    
+    // If you shipped a task, but it wasn&#39;t actually done, this undoes that
+    AndBang.prototype.unshipTask = function (teamId, taskId, cb) {
+        this._callApi('unshipTask', arguments);
     };
     
     // Start watching a task.
@@ -403,7 +405,7 @@
         this._callApi('createTaskForTeammate', arguments);
     };
     
-    // Gets all current tasks for team.
+    // Gets all current and latered tasks for team in the order they were created.
     AndBang.prototype.getAllTasks = function (teamId, cb) {
         this._callApi('getAllTasks', arguments);
     };
@@ -433,6 +435,11 @@
         this._callApi('getMemberWatchedTasks', arguments);
     };
     
+    // Get the task this person is working on.
+    AndBang.prototype.getMemberActiveTask = function (teamId, userId, cb) {
+        this._callApi('getMemberActiveTask', arguments);
+    };
+    
     // Get my current tasks.
     AndBang.prototype.getMyTasks = function (teamId, cb) {
         this._callApi('getMyTasks', arguments);
@@ -453,6 +460,11 @@
         this._callApi('getMyWatchedTasks', arguments);
     };
     
+    // Get the task that I&#39;m working on.
+    AndBang.prototype.getMyActiveTask = function (teamId, cb) {
+        this._callApi('getMyActiveTask', arguments);
+    };
+    
     // Get a given member on the team.
     AndBang.prototype.getMember = function (teamId, userId, cb) {
         this._callApi('getMember', arguments);
@@ -468,13 +480,23 @@
         this._callApi('resetLastInteraction', arguments);
     };
     
+    // Get details about a single invitation
+    AndBang.prototype.getInvite = function (teamId, inviteId, cb) {
+        this._callApi('getInvite', arguments);
+    };
+    
+    // Get array of everybody who has been invited to the team
+    AndBang.prototype.getInvites = function (teamId, cb) {
+        this._callApi('getInvites', arguments);
+    };
+    
     // Send a chat message.
-    AndBang.prototype.sendChat = function (teamId, chatAttributes, cb) {
+    AndBang.prototype.sendChat = function (teamId, chatMessage, cb) {
         this._callApi('sendChat', arguments);
     };
     
     // Send a direct chat message.
-    AndBang.prototype.sendDirectChat = function (teamId, userId, chatAttributes, cb) {
+    AndBang.prototype.sendDirectChat = function (teamId, userId, chatMessage, cb) {
         this._callApi('sendDirectChat', arguments);
     };
     
