@@ -80,5 +80,8 @@ module.exports = BaseView.extend({
     destroy: function () {
         this.model.off();
         this.remove();
+    },
+    renderBoss: function () {
+        
     }
 });
