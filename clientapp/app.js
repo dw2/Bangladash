@@ -37,6 +37,7 @@ module.exports = {
             self.team.set('id', user.teams[0]);
             self.team.members.fetch();
             self.team.shippedTasks.fetch();
+            self.team.damagingTasks.fetch();
         });
 
         return this;
@@ -45,7 +46,8 @@ module.exports = {
     findCollection: function (type) {
         var objectMap = {
             member: app.team.members,
-            task: app.team.shippedTasks
+            task: app.team.shippedTasks,
+            damagingTask: app.team.damagingTasks
         };
         return objectMap[type];
     },

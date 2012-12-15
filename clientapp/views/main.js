@@ -11,10 +11,14 @@ var BaseView = require('views/base'),
     
     
 module.exports = BaseView.extend({
-    initialize: function () {    
+    initialize: function () {
         // register some handlers on the "shippedTasks" collections
         this.model.shippedTasks.on('add', this.handleNewTask, this);
         this.model.shippedTasks.on('reset', this.handleTasksReset, this);
+
+        // register some handlers on the "shippedTasks" collections
+        this.model.damagingTasks.on('add', this.handleNewTask, this);
+        this.model.damagingTasks.on('reset', this.handleTasksReset, this);
         
         // when members are reset we want to redraw them all
         this.model.members.on('add', this.handleNewMember, this);

@@ -43,6 +43,9 @@ exports.member = function anonymous(locals, attrs, escape, rethrow, merge) {
         buf.push('</h4>\n  <p class="activeTask">');
         var __val__ = locals.activeTaskTitle || "";
         buf.push(escape(null == __val__ ? "" : __val__));
+        buf.push('</p>\n  <p class="healthPerc">');
+        var __val__ = locals.healthPerc || 0;
+        buf.push(escape(null == __val__ ? "" : __val__));
         buf.push('</p>\n  <div class="shippedCount"></div>\n</div>');
     }
     return buf.join("");

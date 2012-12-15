@@ -8,7 +8,8 @@ It also serves as a container for it's child collections:
 var Backbone = require('backbone'),
     _ = require('underscore'),
     Members = require('models/members'),
-    ShippedTasks = require('models/shippedTasks');
+    ShippedTasks = require('models/shippedTasks'),
+    DamagingTasks = require('models/damagingTasks');
 
 
 module.exports = Backbone.Model.extend({
@@ -26,6 +27,10 @@ module.exports = Backbone.Model.extend({
         // create and store a collection of Shipped Tasks
         this.shippedTasks = new ShippedTasks();
         this.shippedTasks.on('add reset', this.updateShippedTotals, this);
+        
+        // create and store a collection of Damaging Tasks
+        this.damagingTasks = new DamagingTasks();
+        this.damagingTasks.on('add reset', this.updateDamagingTotals, this);
 
         // set the current weekday as an attribute of the team
         // just for convenience
@@ -70,6 +75,15 @@ module.exports = Backbone.Model.extend({
         // if we don't have a count we set it to zero.
         app.team.members.each(function (member) {
             member.set('shippedCount', totals[member.id] || 0);
+        });
+    },
+    // Here we update the count of shipped tasks for each user
+    updateDamagingTotals: function () {
+        var totals = _.countBy(this.damagingTasks.models, function (task) {
+                return task.get('assignee');
+            });
+        app.team.members.each(function (member) {
+            member.set('damagingCount', totals[member.id] || 0);
         });
     },
     // This is just one possible way to determine whether or not

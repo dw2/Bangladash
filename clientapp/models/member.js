@@ -8,7 +8,8 @@ var Backbone = require('backbone'),
 // our main member model. This represents a team member on the team.
 module.exports = Backbone.Model.extend({
     defaults: {
-        shippedCount: 0
+        shippedCount: 0,
+        damagingCount: 0
     },
     // backbone calls "initialize" after calling a model's constructor
     initialize: function () {
@@ -18,6 +19,9 @@ module.exports = Backbone.Model.extend({
         // since we don't have a "change" event when the app first
         // loads we'll also manually call the update function once.
         this.handleActiveTaskChange();
+
+        this.on('create:task', this.handleDamagingTaskChange, this);
+        this.handleDamagingTaskChange();
     },
     // This simply looks up the active task attribute,
     // if it has one, goes and fetchs the task from the
@@ -41,5 +45,8 @@ module.exports = Backbone.Model.extend({
     // we can derive the pic URL from the ids
     picUrl: function () {
         return 'https://api.andbang.com/teams/' + app.team.id + '/members/' + this.id + '/image';
+    },
+    handleDamagingTaskChange: function () {
+        this.damagingCount = app.team.damagingTasks.length;
     }
 });

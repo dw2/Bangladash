@@ -15,7 +15,8 @@ module.exports = BaseView.extend({
     // content of the '.activeTask' node to whatever
     // the value is of 'activeTaskTitle'
     contentBindings: {
-        activeTaskTitle: '.activeTask'
+        activeTaskTitle: '.activeTask',
+        healthPerc: '.healthPerc'
     },
     // Class bindings toggle a class. So, here we're
     // saying that the presence attribute should always
@@ -39,12 +40,14 @@ module.exports = BaseView.extend({
         this.model.on('change:order', this.handleChangeOrder, this);
         this.model.on('change:activeTask', this.handleActiveTaskChange, this);
         this.model.on('change:shippedCount', this.handleShippedCountChange, this);
+        this.model.on('change:damagingCount', this.handleDamagingCountChange, this);
         $(window).on('resize', _.bind(this.handleChangeOrder, this));
 
         // call them all once
         this.handleChangeOrder();
         this.handleActiveTaskChange();
         this.handleShippedCountChange();
+        this.handleDamagingCountChange();
 
         return this;
     },
@@ -77,6 +80,11 @@ module.exports = BaseView.extend({
         while (i--) {
             container.append(templates.rocket());
         }
+    },
+    handleDamagingCountChange: function () {
+        var i = this.model.get('damagingCount'),
+            container = this.$('.healthPerc');
+        container.empty().text(i);
     },
     destroy: function () {
         this.model.off();
