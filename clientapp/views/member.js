@@ -38,37 +38,16 @@ module.exports = BaseView.extend({
         // in existence.
         this.handleBindings();
         this.model.on('remove', this.destroy, this);
-        this.model.on('change:order', this.handleChangeOrder, this);
         this.model.on('change:activeTask', this.handleActiveTaskChange, this);
         this.model.on('change:shippedCount', this.handleShippedCountChange, this);
         this.model.on('change:damagingCount', this.handleDamagingCountChange, this);
-        $(window).on('resize', _.bind(this.handleChangeOrder, this));
 
         // call them all once
-        this.handleChangeOrder();
         this.handleActiveTaskChange();
         this.handleShippedCountChange();
         this.handleDamagingCountChange();
 
         return this;
-    },
-    handleChangeOrder: function () {
-        var order = this.model.get('order'),
-            windowWidth = window.innerWidth,
-            minimumWidth = 290,
-            numberOfColumns = Math.floor((windowWidth - minimumWidth) / minimumWidth),
-            columnWidth = (windowWidth / (numberOfColumns + 1)) - 10,
-            row = Math.floor(order / numberOfColumns),
-            column = order % numberOfColumns,
-            rowHeight = 150;
-        
-        this.$el.css({
-            top: (row * rowHeight) + 'px',
-            left: (column * columnWidth) + 'px',
-            width: (columnWidth - 10) + 'px'
-        });
-
-        $('.shippedContainer').css('width', columnWidth + 'px');
     },
     handleActiveTaskChange: function () {
         this.$el[this.model.get('activeTask') ? 'addClass' : 'removeClass']('active');

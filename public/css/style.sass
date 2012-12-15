@@ -3,4 +3,20 @@
 @import fonts
 
 body
+  +bg_gradient(#444,#111)
   font: 16px DinRegularAlternate, sans-serif
+
+#people
+  background: url(/img/carbon_fibre.png) top center repeat #282828
+  bottom: 0
+  left: 0
+  position: fixed
+  right: 0
+  &:before
+    background: url(/img/carbon_fibre_edge.png) top center repeat-x
+    content: ''
+    height: 50px
+    left: 0
+    position: absolute
+    right: 0
+    top: -38px

@@ -16,7 +16,7 @@ exports.app = function anonymous(locals, attrs, escape, rethrow, merge) {
     with (locals || {}) {
         var interp;
         var __indent = [];
-        buf.push('\n<aside>\n  <div class="shippedContainer"></div>\n</aside>\n<section id="people">\n  <div class="people"></div>\n</section>');
+        buf.push('\n<aside></aside>\n<section id="people">\n  <div class="people"></div>\n</section>');
     }
     return buf.join("");
 };
