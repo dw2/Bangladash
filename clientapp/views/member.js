@@ -84,15 +84,19 @@ module.exports = BaseView.extend({
         this.remove();
     },
     renderBoss: function () {
+        console.log(app.team.attributes);
         var container = $('#boss'),
             power = app.team.attributes.bossAttackPerc,
             damage = app.team.attributes.bossDamagePerc;
         if (damage > 100) damage = 100;
         var health = 100 - damage;
-        var pixels = Math.round(damage / 100 * 157) + 14,
-            html = $(templates.boss({ healthPerc: damage, attackPerc: power }));
-        html.find('.label').empty().text(health + '%').css('top', pixels);
-        html.find('.mask').css('height', pixels);
+        var healthPixels = Math.round(damage / 100 * 157) + 14,
+            powerPixels = Math.round((100-power) / 100 * 157) + 14,
+            html = $(templates.boss({ healthPerc: health, attackPerc: power }));
+        html.find('.healthPerc .label').empty().text(health + '%').css('top', healthPixels);
+        html.find('.healthPerc .mask').css('height', healthPixels);
+        html.find('.attackPerc .label').empty().text(power + '%').css('top', powerPixels);
+        html.find('.attackPerc .mask').css('height', powerPixels);
         container.empty().html(html);
     }
 });
